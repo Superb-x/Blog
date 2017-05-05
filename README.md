@@ -1,2 +1,2 @@
 # 基于Django与Vue.js的个人博客站点
-开发中...
+提交的时候一定要注意将node_modules文件夹忽略掉，手动添加.gitignore即可
