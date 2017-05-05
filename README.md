@@ -3,6 +3,9 @@
 
 ## 开发环境搭建
 进入client文件夹下
-'''npm install
+
+'''
+   npm install
    npm run dev
-   npm run build'''
+   npm run build
+'''
