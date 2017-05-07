@@ -29,6 +29,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|vue)$/,
+        exclude: '/node_modules/',
         loader: 'eslint-loader',
         enforce: 'pre',
         include: [resolve('src'), resolve('test')],
@@ -38,16 +39,19 @@ module.exports = {
       },
       {
         test: /\.vue$/,
+        exclude: '/node_modules/',
         loader: 'vue-loader',
         options: vueLoaderConfig
       },
       {
         test: /\.js$/,
+        exclude: '/node_modules/',
         loader: 'babel-loader',
         include: [resolve('src'), resolve('test')]
       },
       {
         test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        exclude: '/node_modules/',
         loader: 'url-loader',
         options: {
           limit: 10000,
@@ -56,6 +60,7 @@ module.exports = {
       },
       {
         test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        exclude: '/node_modules/',
         loader: 'url-loader',
         options: {
           limit: 10000,
