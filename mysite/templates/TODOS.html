@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>备忘录</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'lib/css/index.css' %}">
+    <script src="{% static 'lib/js/jquery.min.js' %}"></script>
+    <script src="{% static 'lib/vue.min.js' %}"></script>
+    <script src="{% static 'lib/js/bootstrap.min.js' %}"></script>
+    <script src="https://unpkg.com/lodash@4.13.1/lodash.min.js"></script>
+</head>
+<body>
+{% verbatim %}
+    <section class="container-fluid todosapp">
+        <header>
+            <div class="row">
+                <div class="col-lg-6 input-wrapper">
+                    <div class="input-group">
+                        <input type="text"
+                               class="form-control input-lg"
+                               placeholder="write TODO easily and fastly"                   autocomplete="off"
+                               autofocus
+                               v-model="newTodo"
+                               @keyup.enter="addTodo">
+                        <span class="input-group-btn">
+        <button class="btn btn-default btn-lg" type="button" @click="addTodo">Go!</button>
+      </span>
+                    </div><!-- /input-group -->
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </header>
+        <label for="check" class="btn btn-success" style="margin-bottom: 20px">
+            All Done
+            <input id="check" type="checkbox" v-model="allDone"/>
+        </label>
+        <section v-show="todos.length" v-cloak>
+            <div class="panel panel-default"
+                 v-for="todo in filteredTodos"
+                 :key="todo.id"
+                 :class="{editing: todo == editedTodo}">
+                <input type="checkbox" v-model="todo.completed">
+                <label for="" class="panel-body"
+                       @dblclick="editTodo(todo)"
+                       :class="{completed: todo.completed}">
+                    {{todo.title}}
+
+                </label>
+                <button type="button"
+                        class="btn btn-danger"
+                        @click="removeTodo(todo)">DELETE</button>
+                <input type="text"
+                       class="edit"
+                       v-model="todo.title"
+                       v-todo-focus="todo == editedTodo"
+                       @blur="doneEdit(todo)"
+                       @keyup.esc="cancelEdit(todo)">
+
+            </div>
+        </section>
+        <footer class="remained">
+            <span>you have</span>
+            <starong>{{remaining}} </starong>
+            {{ remaining | pluralize }}
+            <span> left, just do it </span>
+            <ul class="pagination">
+                <li :class="{active: visibility == 'all'}"><a href="#/all" >All</a></li>
+                <li :class="{active: visibility == 'active'}"><a href="#/active">Active</a></li>
+                <li :class="{active: visibility == 'completed'}"><a href="#/completed">completed</a></li>
+            </ul>
+            <button class="btn clear btn-primary"
+                    @click="removeCompleted"
+                    v-show="todos.length > remaining">clear completed</button>
+        </footer>
+    </section>
+{% endverbatim %}
+</body>
+<script src="{% static 'lib/js/index.js' %}"></script>
+</html>
