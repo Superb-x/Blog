@@ -16,10 +16,12 @@ Including another URLconf
 from django.conf.urls import url, include
 from django.contrib import admin
 from django.views.generic.base import TemplateView
+from server.tpl import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', TemplateView.as_view(template_name='index.html')),
+    url(r'^todo/', Todo.as_view()),
     url(r'^api/', include('server.urls', namespace='api')),
-    url(r'^todo/', TemplateView.as_view(template_name='TODOS.html'))
 ]
+
