@@ -21,7 +21,7 @@
 
 貌似这里设置了STATIC_ROOT之后与上边的STATICFILES_DIRS会引起冲突,具体原因还有待发掘, 执行完 `python manage.py collectstatic`就注释起来吧
 
-这样client/dist/static目录下所有的文件都会复制到项目的根目录static文件夹中
+这样Django会将整个项目下所有的隐藏的静态文件(admin自带的一些静态文件)都会复制到根目录static文件夹中
 
 # 关于Django与Vue模板标签冲突的问题
 开发中我们发现Vue和Django使用的都是‘{{}}’来渲染变量，这肯定会导致冲突，为了避免这个带来的影响，我查了很多资料找到了几个解决方案
