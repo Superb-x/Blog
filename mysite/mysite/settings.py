@@ -55,10 +55,14 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'mysite.urls'
 
+VUE_STATIC = os.path.join(BASE_DIR, 'client', 'dist')
+
+TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['client/dist'],
+        'DIRS': [VUE_STATIC, TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -74,6 +78,8 @@ TEMPLATES = [
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'client/dist/static')
 ]
+
+
 # set the root directory of project use python manage.py collectstatic to collect all static of whole project
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
