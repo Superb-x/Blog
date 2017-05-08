@@ -35,3 +35,5 @@
     {% verbatim %}
         {{ vue }}
     {% endverbatim %}
+
+详细信息可以参考[Django模板与Vue.js冲突问题](https://my.oschina.net/soarwilldo/blog/755984)
