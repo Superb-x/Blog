@@ -76,12 +76,13 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'client/dist/static')
+    os.path.join(BASE_DIR, 'client/dist/static'),
+    os.path.join(BASE_DIR, 'statics')
 ]
 
 
 # set the root directory of project use python manage.py collectstatic to collect all static of whole project
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
