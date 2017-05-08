@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'server.app.ServerConfig',
+    'server.apps.ServerConfig',
 ]
 
 MIDDLEWARE = [
@@ -77,12 +77,13 @@ TEMPLATES = [
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'client/dist/static'),
-    os.path.join(BASE_DIR, 'statics')
+    os.path.join(BASE_DIR, 'static')
 ]
 
 
 # set the root directory of project use python manage.py collectstatic to collect all static of whole project
-STATIC_ROOT = os.path.join(BASE_DIR, 'statics')
+# 貌似这里设置了STATIC_ROOT之后与上边的STATICFILES_DIRS会引起冲突, 执行完python manage.py collectstatic就注释起来吧
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
