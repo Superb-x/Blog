@@ -86,18 +86,22 @@
     border-right: 0 solid transparent;
     border-top: 0 solid transparent
 }
+html, body{
+    width: 100%;
+    height: 100%;
+}
 .wrapper {
     background: url(../images/back2.jpg) no-repeat center top;
     padding-top: 10px;
     background-attachment: relative;
     background-position: center center;
     min-height: 500px;
-    height: 1276px;
     width: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
+    height: 100%;
+    -webkit-background-size: 100% 100%;
+    -moz-background-size: 100% 100%;
+    -o-background-size: 100% 100%;
+    background-size: 100% 100%;
 }
 .nav > li > a {
     text-decoration: none;
