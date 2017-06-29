@@ -3,6 +3,7 @@
 <head>
     <title>Nearw的博客</title>
     {% load static %}
+    {% load server_tags %}
     <!-- meta -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -67,18 +68,19 @@
             <aside class="col-md-4">
                 {% block toc %}
                 {% endblock toc %}
+
+                {% get_recent_posts as recent_post_list %}
+
                 <div class="widget widget-recent-posts">
                     <h3 class="widget-title">最新文章</h3>
                     <ul>
-                        <li>
-                            <a href="#">Django 博客开发入门教程：前言</a>
-                        </li>
-                        <li>
-                            <a href="#">Django 博客使用 Markdown 自动生成文章目录</a>
-                        </li>
-                        <li>
-                            <a href="#">部署 Django 博客</a>
-                        </li>
+                        {% for post in recent_post_list %}
+                            <li>
+                                <a href="{{post.get_absolute_url}}">{{post.title}}</a>
+                            </li>
+                        {% empty %}
+                            <li>暂无文章</li>
+                        {% endfor %}
                     </ul>
                 </div>
                 <div class="widget widget-archives">
