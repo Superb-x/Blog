@@ -1,10 +1,17 @@
-from django.shortcuts import render
+import markdown
+from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
+from .models import Post
 # Create your views here.
 def index(request):
-    data = {
-        'status': 400,
-        'msg': '成功',
-        'data': []
-    }
-    return JsonResponse(data, safe=False)
+    post_list = Post.objects.all().order_by('-create_time')
+    return render(request, 'blog/index.html', context={'post_list': post_list})
+
+def detail(request, pk):
+    post = get_object_or_404(Post, pk=pk)
+    post.body = markdown.markdown(post.body, extensions=[
+        'markdown.extensions.extra',
+        'markdown.extensions.codehilite',
+        'markdown.extensions.toc',
+    ])
+    return render(request, 'blog/detail.html', context={'post': post})

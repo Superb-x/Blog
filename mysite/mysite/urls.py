@@ -20,8 +20,8 @@ from server.tpl import *
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^$', TemplateView.as_view(template_name='main/index.html')),
+    url(r'^main$', TemplateView.as_view(template_name='main/index.html')),
     url(r'^todo/', Todo.as_view()),
-    url(r'^api/', include('server.urls', namespace='api')),
+    url(r'', include('server.urls', namespace='server')),
 ]
 
