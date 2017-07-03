@@ -118,6 +118,7 @@
                         {% for tag in tag_list %}
                             <li>
                                 <a href="{% url 'blog:tag' tag.pk %}">{{tag.name}}</a>
+                                <span>{{tag.num_post}}</span>
                             </li>
                         {% empty %}
                             <li>
