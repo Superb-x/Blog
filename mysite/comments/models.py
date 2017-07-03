@@ -7,7 +7,7 @@ class Comment(models.Model):
     text = models.TextField()
     create_time = models.DateTimeField(auto_now_add=True)
 
-    post = models.ForeignKey('server.Post')
+    post = models.ForeignKey('blog.Post')
 
     def __str__(self):
         return self.text[:20]

@@ -369,13 +369,13 @@ var isIOS = UA && /iphone|ipad|ipod|ios/.test(UA);
 var isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge;
 
 // this needs to be lazy-evaled because vue may be required before
-// vue-server-renderer can set VUE_ENV
+// vue-blog-renderer can set VUE_ENV
 var _isServer;
 var isServerRendering = function () {
   if (_isServer === undefined) {
     /* istanbul ignore if */
     if (!inBrowser && typeof global !== 'undefined') {
-      // detect presence of vue-server-renderer and avoid
+      // detect presence of vue-blog-renderer and avoid
       // Webpack shimming the process
       _isServer = global['process'].env.VUE_ENV === 'server';
     } else {
@@ -4929,10 +4929,10 @@ function createPatchFunction (backend) {
       } else {
         if (isRealElement) {
           // mounting to a real element
-          // check if this is server-rendered content and if we can perform
+          // check if this is blog-rendered content and if we can perform
           // a successful hydration.
-          if (oldVnode.nodeType === 1 && oldVnode.hasAttribute('server-rendered')) {
-            oldVnode.removeAttribute('server-rendered');
+          if (oldVnode.nodeType === 1 && oldVnode.hasAttribute('blog-rendered')) {
+            oldVnode.removeAttribute('blog-rendered');
             hydrating = true;
           }
           if (hydrating) {
@@ -4942,14 +4942,14 @@ function createPatchFunction (backend) {
             } else {
               warn(
                 'The client-side rendered virtual DOM tree is not matching ' +
-                'server-rendered content. This is likely caused by incorrect ' +
+                'blog-rendered content. This is likely caused by incorrect ' +
                 'HTML markup, for example nesting block-level elements inside ' +
                 '<p>, or missing <tbody>. Bailing hydration and performing ' +
                 'full client-side render.'
               );
             }
           }
-          // either not server-rendered, or hydration failed.
+          // either not blog-rendered, or hydration failed.
           // create an empty node and replace it
           oldVnode = emptyNodeAt(oldVnode);
         }
