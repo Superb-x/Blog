@@ -2,7 +2,7 @@ import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from comments.forms import CommentFrom
-from .models import Post, Category
+from .models import Post, Category, Tag
 # Create your views here.
 
 
@@ -41,3 +41,14 @@ def category(request, pk):
     cate = get_object_or_404(Category, pk=pk)
     post_list = Post.objects.filter(category=cate)
     return render(request, 'blog/index.html', context={'post_list': post_list})
+
+def tag(request, pk):
+    tag = get_object_or_404(Tag, pk=pk)
+    post_list = Post.objects.filter(tags=tag)
+    return render(request, 'blog/index.html', context={'post_list': post_list})
+
+def about(request):
+    return render(request, 'blog/about.html', context={'about': 'about'})
+
+def contact(request):
+    return render(request, 'blog/contact.html', context={'contact': 'contact'})
