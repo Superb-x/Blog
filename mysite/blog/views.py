@@ -16,7 +16,7 @@ def detail(request, pk):
     #被访问一次阅读量+1
     post.increase_views()
 
-    post.body = markdown.markdown(post.body, extensions=[
+    post.body = markdown.Markdown(post.body, extensions=[
         'markdown.extensions.extra',
         'markdown.extensions.codehilite',
         'markdown.extensions.toc',
