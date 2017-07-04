@@ -1,169 +1,169 @@
 <!DOCTYPE HTML>
 <html>
-	{% load static blog_tags %}
-	<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Story &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta name="description" content="Free HTML5 Website Template by freehtml5.co" />
-	<meta name="keywords" content="free website templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive" />
-	<meta name="author" content="freehtml5.co" />
+{% load static blog_tags %}
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Story &mdash; Free Website Template, Free HTML5 Template by freehtml5.co</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Free HTML5 Website Template by freehtml5.co"/>
+    <meta name="keywords" content="博客 blog 个人网站 templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive, 湖南, 浏阳"/>
+    <meta name="author" content="刘祥麟"/>
+    <!-- Facebook and Twitter integration -->
+    <meta property="og:title" content=""/>
+    <meta property="og:image" content=""/>
+    <meta property="og:url" content=""/>
+    <meta property="og:site_name" content=""/>
+    <meta property="og:description" content=""/>
+    <meta name="twitter:title" content=""/>
+    <meta name="twitter:image" content=""/>
+    <meta name="twitter:url" content=""/>
+    <meta name="twitter:card" content=""/>
 
+    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
+    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="{% static 'blog/css/animate.css' %}">
+    <!-- Icomoon Icon Fonts-->
+    <link rel="stylesheet" href="{% static 'blog/css/icomoon.css' %}">
+    <!-- Bootstrap  -->
+    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
 
+    <!-- Theme style  -->
+    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
 
-  	<!-- Facebook and Twitter integration -->
-	<meta property="og:title" content=""/>
-	<meta property="og:image" content=""/>
-	<meta property="og:url" content=""/>
-	<meta property="og:site_name" content=""/>
-	<meta property="og:description" content=""/>
-	<meta name="twitter:title" content="" />
-	<meta name="twitter:image" content="" />
-	<meta name="twitter:url" content="" />
-	<meta name="twitter:card" content="" />
+    <!-- Modernizr JS -->
+    <script src="{% static 'blog/js/modernizr-2.6.2.min.js' %}"></script>
+    <!-- FOR IE9 below -->
+    <!--[if lt IE 9]>
+    <script src="{% static 'blog/js/respond.min.js' %}"></script>
+    <![endif]-->
 
-	<link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
-	<!-- Animate.css -->
-	<link rel="stylesheet" href="{% static 'blog/css/animate.css' %}">
-	<!-- Icomoon Icon Fonts-->
-	<link rel="stylesheet" href="{% static 'blog/css/icomoon.css' %}">
-	<!-- Bootstrap  -->
-	<link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
+</head>
+<body>
 
-	<!-- Theme style  -->
-	<link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
+<div class="fh5co-loader"></div>
 
-	<!-- Modernizr JS -->
-	<script src="{% static 'blog/js/modernizr-2.6.2.min.js' %}"></script>
-	<!-- FOR IE9 below -->
-	<!--[if lt IE 9]>
-	<script src="{% static 'blog/js/respond.min.js' %}"></script>
-	<![endif]-->
+<!--modal-->
+<div id="mask" class="mask fade">
+    <div class="dialog category-class">
+        {% archives as date_list %}
+        <ul class="archives">
+            {% for date in date_list %}
+            <li>
+                <a href="{% url 'blog:archives' date.year date.month %}">{{date.year}}年{{date.month}}月</a>
+            </li>
+            {% endfor %}
+        </ul>
+        <div class="footer">
+            <button type="button" class="btn btn-default btn-sm">
+                <span class="glyphicon glyphicon-remove"></span>
+            </button>
+        </div>
+    </div>
+    <div class="dialog category-class">
+        {% get_categories as category_list %}
+        <ul class="tag-list">
+            {% for category in category_list %}
+            <li><a href="{% url 'blog:category' category.pk %}">{{category.name}}({{category.num_posts}})</a></li>
+            {% endfor %}
+        </ul>
+        <div class="footer">
+            <button type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+    <div class="dialog category-class">
+        {% get_tags as tags_list %}
+        <ul class="tag-list">
+            {% for tag in tags_list %}
+            <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}}({{tag.num_post}})</a></li>
+            {% endfor %}
+        </ul>
+        <div class="footer">
+            <button type="button" class="btn btn-default" aria-label="Left Align">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </button>
+        </div>
+    </div>
+</div>
+<div id="page">
+    <div id="fh5co-aside" style="background-image: url({% static 'blog/img/image_1.jpg' %})">
+        <div class="overlay"></div>
+        <div class="header">
+            <img src="{% static 'blog/img/person_3.jpg' %}" alt="">
+        </div>
+        <h1 class="blog-name">Nearw 的博客</h1>
+        <div class="aside">
+            <a href="javascript:void(0);">最新文章</a>
+            {% get_recent_posts as recent_list %}
+            <ul>
+                {% for post in recent_list %}
+                <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
+                {% endfor %}
+            </ul>
+            <a href="#" class="tag">归档</a>
+            <a href="#" class="tag">分类</a>
+            <a href="#" class="tag">标签</a>
+        </div>
+        <!--<div class="featured">
+            <span>Bio</span>
+            <h2>I'm liuxianglin </a></h2>
+        </div>-->
+    </div>
+    <div id="fh5co-main-content">
+        <div class="fh5co-post">
+            {% for post in post_list %}
+            <div class="fh5co-entry padding">
+                <img src="{% static 'blog/img/project-' %}{{post.pk}}.jpg" alt="">
+                <div>
+                    <span class="fh5co-post-date">{{post.create_time}}</span>
+                    <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+                    <p>{{post.excerpt}}</p>
+                </div>
+            </div>
+            {% endfor %}
+            <footer>
+                <div>
+                    &copy; 2016 Free HTML5. All Rights Reserved. More Templates <a href="http://www.cssmoban.com/"
+                                                                                   target="_blank" title="模板之家">模板之家</a>
+                    - 由 <a href="http://123.56.26.224/" title="网页模板" target="_blank">刘祥麟的博客</a>修改
+                </div>
+            </footer>
+        </div>
+    </div>
+</div>
 
-	</head>
-	<body>
+<div class="gototop js-top">
+    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
+</div>
 
-	<div class="fh5co-loader"></div>
-
-	<!--modal-->
-	<div id="mask" class="mask fade">
-		<div class="dialog category-class">
-			{% archives as date_list %}
-			<ul class="archives">
-				{% for date in date_list %}
-					<li>
-						<a href="{% url 'blog:archives' date.year date.month %}">{{date.year}}年{{date.month}}月</a>
-					</li>
-				{% endfor %}
-			</ul>
-			<div class="footer">
-				<button type="button" class="btn btn-default btn-sm">
-					<span class="glyphicon glyphicon-remove"></span>
-				</button>
-			</div>
-		</div>
-		<div class="dialog category-class">
-			{% get_categories as category_list %}
-			<ul class="tag-list">
-				{% for category in category_list %}
-					<li><a href="{% url 'blog:category' category.pk %}">{{category.name}}({{category.num_posts}})</a></li>
-				{% endfor %}
-			</ul>
-			<div class="footer">
-				<button type="button" class="btn btn-default" aria-label="Left Align">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				</button>
-			</div>
-		</div>
-		<div class="dialog category-class">
-			{% get_tags as tags_list %}
-			<ul class="tag-list">
-				{% for tag in tags_list %}
-					<li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}}({{tag.num_post}})</a></li>
-				{% endfor %}
-			</ul>
-			<div class="footer">
-				<button type="button" class="btn btn-default" aria-label="Left Align">
-					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-				</button>
-			</div>
-		</div>
-	</div>
-	<div id="page">
-		<div id="fh5co-aside" style="background-image: url({% static 'blog/img/image_1.jpg' %})">
-			<div class="overlay"></div>
-			<div class="header">
-				<img src="{% static 'blog/img/person_3.jpg' %}" alt="">
-			</div>
-			<h1 class="blog-name">Nearw 的博客</h1>
-			<div class="aside">
-				<a href="javascript:void(0);">最新文章</a>
-				{% get_recent_posts as recent_list %}
-				<ul>
-					{% for post in recent_list %}
-						<li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
-					{% endfor %}
-				</ul>
-				<a href="#" class="tag">归档</a>
-				<a href="#" class="tag">分类</a>
-				<a href="#" class="tag">标签</a>
-			</div>
-			<!--<div class="featured">
-				<span>Bio</span>
-				<h2>I'm liuxianglin </a></h2>
-			</div>-->
-		</div>
-		<div id="fh5co-main-content">
-			<div class="fh5co-post">
-				{% for post in post_list %}
-					<div class="fh5co-entry padding">
-						<img src="{% static 'blog/img/project-' %}{{post.pk}}.jpg" alt="">
-						<div>
-							<span class="fh5co-post-date">{{post.create_time}}</span>
-							<h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-							<p>{{post.excerpt}}</p>
-						</div>
-					</div>
-				{% endfor %}
-				<footer>
-					<div>
-					&copy; 2016 Free HTML5. All Rights Reserved. More Templates <a href="http://www.cssmoban.com/" target="_blank" title="模板之家">模板之家</a> - 由 <a href="http://123.56.26.224/" title="网页模板" target="_blank">刘祥麟的博客</a>修改
-					</div>
-				</footer>
-			</div>
-		</div>
-	</div>
-
-	<div class="gototop js-top">
-		<a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-	</div>
-
-	<!-- jQuery -->
-	<script src="{% static 'blog/js/jquery.min.js' %}"></script>
-	<!-- jQuery Easing -->
-	<script src="{% static 'blog/js/jquery.easing.1.3.js' %}"></script>
-	<!-- Bootstrap -->
-	<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
-	<!-- Waypoints -->
-	<script src="{% static 'blog/js/jquery.waypoints.min.js' %}"></script>
-	<!-- Stellar Parallax -->
-	<script src="{% static 'blog/js/jquery.stellar.min.js' %}"></script>
-	<!-- Main -->
-	<script src="{% static 'blog/js/main.js' %}"></script>
-	<script>
-		var $mask = $("#mask"),
-			$dialog = $(".dialog");
-		$(".tag").click(function(){
-			console.log($(this))
-			$mask.show(200).addClass('in');
-			$dialog.eq($(this).index(".tag")).fadeIn();
-		})
-		$(".btn").click(function(){
-			$mask.removeClass("in").hide(300);
-			$(this).parents(".dialog").hide();
-		})
-	</script>
-	</body>
+<!-- jQuery -->
+<script src="{% static 'blog/js/jquery.min.js' %}"></script>
+<!-- jQuery Easing -->
+<script src="{% static 'blog/js/jquery.easing.1.3.js' %}"></script>
+<!-- Bootstrap -->
+<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
+<!-- Waypoints -->
+<script src="{% static 'blog/js/jquery.waypoints.min.js' %}"></script>
+<!-- Stellar Parallax -->
+<script src="{% static 'blog/js/jquery.stellar.min.js' %}"></script>
+<!-- Main -->
+<script src="{% static 'blog/js/main.js' %}"></script>
+<script>
+    var $mask = $("#mask"),
+        $dialog = $(".dialog");
+    $(".tag").click(function () {
+        console.log($(this))
+        $mask.show(200).addClass('in');
+        $dialog.eq($(this).index(".tag")).fadeIn();
+    })
+    $(".btn").click(function () {
+        $mask.removeClass("in").hide(300);
+        $(this).parents(".dialog").hide();
+    })
+</script>
+</body>
 </html>
 
