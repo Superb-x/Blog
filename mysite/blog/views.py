@@ -36,12 +36,12 @@ class PostDetailView(DetailView):
     def get_object(self, queryset=None):
         #重写get_object方法是因为需要对post的body进行处理
         post = super(PostDetailView, self).get_object(queryset=None)
-        post.body = markdown.Markdown(post.body, extensions=[
+
+        post.body = markdown.markdown(post.body, extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc'
         ])
-
         return post
 
     def get_context_data(self, **kwargs):
