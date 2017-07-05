@@ -4,6 +4,7 @@ from django.http import JsonResponse, HttpResponse
 from comments.forms import CommentFrom
 from .models import Post, Category, Tag
 from django.views.generic import ListView, DetailView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 
 
@@ -12,6 +13,7 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
+    paginate_by = 2
 
 
 class PostDetailView(DetailView):
