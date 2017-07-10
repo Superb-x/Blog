@@ -108,7 +108,46 @@ class IndexView(ListView):
             # 比如分页页码列表是 [1, 2, 3, 4]，那么获取的就是 left = [2, 3]
             # 这里只获取了当前页码后连续两个页码，你可以更改这个数字以获取更多页码。
 
-            left =
+            left = page_range[(page_number - 3) if (page_number - 3) > 0 else 0:page_number - 1]
+
+            # 如果最左边的页码号比第 2 页页码号还大，
+            # 说明最左边的页码号和第 1 页的页码号之间还有其它页码，因此需要显示省略号，通过 left_has_more 来指示。
+            if left[0] > 2:
+                left_has_more = True
+
+            # 如果最左边的页码号比第 1 页的页码号大，说明当前页左边的连续页码号中不包含第一页的页码，
+            # 所以需要显示第一页的页码号，通过 first 来指示
+            if left[0] > 1:
+                first = True
+
+        else:
+            # 用户请求的既不是最后一页，也不是第 1 页，则需要获取当前页左右两边的连续页码号，
+            # 这里只获取了当前页码前后连续两个页码，你可以更改这个数字以获取更多页码。
+            left = page_range[(page_number - 3) if (page_number - 3) > 0 else 0:page_number - 1]
+            right = page_range[page_number:page_number + 2]
+
+            # 是否需要显示最后一页和最后一页前的省略号
+            if right[-1] < total_pages - 1:
+                right_has_more = True
+            if right[-1] < total_pages:
+                last = True
+
+            # 是否需要显示第 1 页和第 1 页后的省略号
+            if left[0] > 2:
+                left_has_more = True
+            if left[0] > 1:
+                first = True
+
+        data = {
+            'left': left,
+            'right': right,
+            'left_has_more': left_has_more,
+            'right_has_more': right_has_more,
+            'first': first,
+            'last': last,
+        }
+
+        return data;
 
 
 
