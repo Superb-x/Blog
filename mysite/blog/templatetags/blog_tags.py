@@ -35,10 +35,8 @@ def get_tags():
 #获取当天访问记录
 @register.simple_tag
 def get_today_visit_count():
-    print(timezone.datetime.now())
     try:
         count = PageView.objects.get(create_date=timezone.now().date())
-        print(count)
     except ObjectDoesNotExist:
         # 没有记录则表示当天没人访问
         return 0
