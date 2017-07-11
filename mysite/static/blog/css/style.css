@@ -1084,4 +1084,15 @@ footer {
   top: 5%;
   right: 0;
 }
+#page .pagination {
+  margin-left: 40%;
+}
+.copyright {
+  text-align: center;
+}
+.page-view-static p{
+  text-align: center;
+  padding: 0;
+  margin: 0;
+}
 /*# sourceMappingURL=style.css.map */

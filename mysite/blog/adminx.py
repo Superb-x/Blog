@@ -1,5 +1,5 @@
 import xadmin
-from .models import Category, Post, Tag
+from .models import Category, Post, Tag, About, VisitorRecord, PageView
 from xadmin import views
 # Register your models here.
 
@@ -18,6 +18,11 @@ class GlobalSetting(object):
 class PostAdmin(object):
     list_display = ['title', 'create_time', 'modified_time', 'category', 'author']
 
+class VisitorAdmin(object):
+    list_display = ['http_host', 'http_path', 'http_user_agent', 'ip', 'server_name']
+
 xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category)
 xadmin.site.register(Tag)
+xadmin.site.register(About)
+xadmin.site.register(VisitorRecord, VisitorAdmin)

@@ -1,13 +1,14 @@
 {% extends 'base.html' %}
 {% block main %}
 	{% load static %}
-	<h1 class="page-title">关于我</h1>
+	{% for v in post %}
+	<h1 class="page-title">{{v.title}}</h1>
 	<article class="post">
 		<div class="entry-content clearfix">
 			<figure class="img-responsive-center">
 				<img class="img-responsive" src="{% static 'blog/img/me.jpg' %}" alt="Developer Image">
 			</figure>
-			<p>一个毕业于湖南一所不知名大学的前端工程师，是一条梦想成为全栈工程师的咸鱼。爱好广泛，啥都喜欢研究，喜欢折腾。</p>
+			<p>{{v.body|safe}}</p>
 			<div class="height-40px"></div>
 			<h2 class="title text-center">Social</h2>
 			<ul class="social">
@@ -18,4 +19,5 @@
 			</ul>
 		</div>
 	</article>
+	{% endfor %}
 {% endblock main %}

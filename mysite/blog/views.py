@@ -2,7 +2,7 @@ import markdown
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from comments.forms import CommentFrom
-from .models import Post, Category, Tag
+from .models import Post, Category, Tag, About
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
@@ -13,7 +13,7 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 2
+    paginate_by = 4
 
     def get_context_data(self, **kwargs):
         """
@@ -147,7 +147,7 @@ class IndexView(ListView):
             'last': last,
         }
 
-        return data;
+        return data
 
 
 
@@ -174,11 +174,15 @@ class PostDetailView(DetailView):
         #重写get_object方法是因为需要对post的body进行处理
         post = super(PostDetailView, self).get_object(queryset=None)
 
-        post.body = markdown.markdown(post.body, extensions=[
+        md = markdown.Markdown(extensions=[
             'markdown.extensions.extra',
             'markdown.extensions.codehilite',
             'markdown.extensions.toc'
         ])
+
+        post.body = md.convert(post.body)
+        post.toc = md.toc
+
         return post
 
     def get_context_data(self, **kwargs):
@@ -254,7 +258,13 @@ def tag(request, pk):
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
 def about(request):
-    return render(request, 'blog/about.html', context={'about': 'about'})
+    post = About.objects.filter(is_pub=True)
+    print(request.session.session_key)
+    #如果有多篇文章
+    if post and len(post) > 1:
+        post = post[0]
+        post.increase_views()
+    return render(request, 'blog/about.html', context={'post': post})
 
 def contact(request):
     return render(request, 'blog/contact.html', context={'contact': 'contact'})
