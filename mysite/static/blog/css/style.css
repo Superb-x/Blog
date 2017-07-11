@@ -451,6 +451,7 @@ h1, h2, h3, h4, h5, h6, figure {
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
+  padding-top: 10px;
 }
 .single #fh5co-aside {
   position: relative;
@@ -469,6 +470,7 @@ h1, h2, h3, h4, h5, h6, figure {
     position: relative;
     z-index: 999;
     height: 700px;
+    padding-top: 10px;
   }
 }
 #fh5co-aside .overlay {
@@ -999,7 +1001,7 @@ footer {
   height: 150px;
   border: 5px solid #fff;
   border-radius: 50%;
-  margin: 10px auto;
+  margin: 0 auto;
   overflow: hidden;
 }
 
