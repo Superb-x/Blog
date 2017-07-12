@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'nxl2czol=-m7o!kmzt7b1_h1#3oye_z&5nw8hiok(9(@9(6-s)'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.superbx.cn', '123.56.26.224']
 
@@ -62,14 +62,12 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'mysite.urls'
 
-VUE_STATIC = os.path.join(BASE_DIR, 'client', 'dist')
-
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [VUE_STATIC, TEMPLATE_DIR],
+        'DIRS': [TEMPLATE_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,7 +81,6 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'client/dist/static'),
     os.path.join(BASE_DIR, 'static')
 ]
 

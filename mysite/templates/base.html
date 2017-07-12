@@ -140,6 +140,11 @@
                     - 由<a href="http://123.56.26.224" title="网页模板" target="_blank">刘祥麟</a>修改
                 </p>
             </div>
+            <div class="page-view-static">
+                <p>网站已运行: {% get_all_run_day %} 天</p>
+                {% get_all_visit_count as total_count %}
+                <p>总访问量: {{total_count.total_visit}} | 今日访问量: {% get_today_visit_count %}</p>
+            </div>
         </div>
     </div>
 </footer>

@@ -1097,4 +1097,12 @@ footer {
   padding: 0;
   margin: 0;
 }
+.beian h5 {
+  margin: 0;
+  text-align: center;
+  padding-top: 5px;
+}
+.beian h5 a {
+  color: #828282;
+}
 /*# sourceMappingURL=style.css.map */
