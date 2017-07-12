@@ -259,7 +259,8 @@ def tag(request, pk):
 
 def about(request):
     post = About.objects.filter(is_pub=True)
-    #如果有多篇文章
+    # 如果有多篇文章
+
     if post and len(post) > 1:
         post = post[0]
         post.increase_views()
