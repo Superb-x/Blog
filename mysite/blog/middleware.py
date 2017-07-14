@@ -50,6 +50,7 @@ class PageViewMiddleware(MiddlewareMixin):
         else:
             remote_ip = request.META['REMOTE_ADDR']
 
+        print(remote_ip)
         #如果当前session当中存在当前ip，表明还是同一次访问
         if remote_ip not in request.session:
             request.session[remote_ip] = 1
