@@ -45,7 +45,7 @@ class PageViewMiddleware(MiddlewareMixin):
 
     def process_request(self, request):
         #访问者的IP地址
-        if request.META.has_key('HTTP_X_FORWARDED_FOR'):
+        if 'HTTP_X_FORWARDED_FOR' in request.META:
             remote_ip = request.META['HTTP_X_FORWARDED_FOR']
         else:
             remote_ip = request.META['REMOTE_ADDR']
