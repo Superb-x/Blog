@@ -4,3 +4,7 @@ mysite/mysite/__pycache__/
 mysite/server/migrations/__pycache__/
 *.pyc
 *.sqlite3
+**/settings.py
+mysite/mysite/settings.py
+settings.py
+*.sql

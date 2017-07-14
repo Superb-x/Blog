@@ -93,7 +93,7 @@ class Post(models.Model):
         verbose_name = '文章'
         verbose_name_plural = verbose_name
 
-# 关于
+#关于
 class About(models.Model):
     # 标题
     title = models.CharField(max_length=200, verbose_name="标题")
