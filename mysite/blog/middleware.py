@@ -25,9 +25,17 @@ class VisitRecordMiddleware(MiddlewareMixin):
         if 'xadmin' not in request_path:
             visitor_record = VisitorRecord()
 
+            # 访问者的IP地址
+            if 'HTTP_X_FORWARDED_FOR' in request.META:
+                remote_ip = request.META['HTTP_X_FORWARDED_FOR']
+            else:
+                remote_ip = request.META['REMOTE_ADDR']
+
+            print(remote_ip)
+            
             visitor_record.http_host = request.META.get('HTTP_HOST')
             visitor_record.http_user_agent = request.META.get('HTTP_USER_AGENT')
-            visitor_record.ip = str(request.META.get('REMOTE_ADDR'))
+            visitor_record.ip = str(remote_ip)
             visitor_record.server_name = request.META.get('SERVER_NAME')
             visitor_record.http_path = request.path_info
 
@@ -50,7 +58,6 @@ class PageViewMiddleware(MiddlewareMixin):
         else:
             remote_ip = request.META['REMOTE_ADDR']
 
-        print(remote_ip)
         #如果当前session当中存在当前ip，表明还是同一次访问
         if remote_ip not in request.session:
             request.session[remote_ip] = 1
