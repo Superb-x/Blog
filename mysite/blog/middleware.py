@@ -32,7 +32,7 @@ class VisitRecordMiddleware(MiddlewareMixin):
                 remote_ip = request.META['REMOTE_ADDR']
 
             print(remote_ip)
-            
+
             visitor_record.http_host = request.META.get('HTTP_HOST')
             visitor_record.http_user_agent = request.META.get('HTTP_USER_AGENT')
             visitor_record.ip = str(remote_ip)
