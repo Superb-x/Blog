@@ -259,7 +259,6 @@ def tag(request, pk):
 
 def about(request):
     post = About.objects.filter(is_pub=True)
-    print(request.session.session_key)
     #如果有多篇文章
     if post and len(post) > 1:
         post = post[0]
