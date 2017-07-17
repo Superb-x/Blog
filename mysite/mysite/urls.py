@@ -27,6 +27,7 @@ urlpatterns = [
     url(r'^main$', TemplateView.as_view(template_name='main/index.html')),
     url(r'^todo/', Todo.as_view()),
     url(r'', include('blog.urls')),
-    url(r'', include('comments.urls'))
+    url(r'', include('comments.urls')),
+    url(r'^ckeditor/', include('ckeditor_uploader.urls')),
 ]
 

@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'xadmin',
     'crispy_forms',
     'reversion',
+    'ckeditor',
+    'ckeditor_uploader',
 ]
 
 MIDDLEWARE = [
@@ -81,13 +83,31 @@ TEMPLATES = [
 ]
 
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static')
+    os.path.join(BASE_DIR,'blog', 'static')
 ]
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 # set the root directory of project use python manage.py collectstatic to collect all static of whole project
-# 貌似这里设置了STATIC_ROOT之后与上边的STATICFILES_DIRS会引起冲突, 执行完python manage.py collectstatic就注释起来吧
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# 貌似这里设置了STATIC_ROOT之后与上边的STATICFILES_DIRS会引起冲突, 执行完python manage.py collectstatic就注释起来吧STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+MEDIA_URL = '/media/'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'  # 设置ckeditor文件上传的路径
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 400,
+        'width': 800,
+    },
+    'awesome_ckeditor': {
+        'toolbar': 'Basic',
+    },
+}
+
 
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
@@ -98,7 +118,7 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'blog',
+        'NAME': 'myblog',
         'USER': 'root',
         'PASSWORD': 'lxl595mysql',
         'HOST': 'localhost',
