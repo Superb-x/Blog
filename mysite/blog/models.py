@@ -1,6 +1,6 @@
 import markdown
 from django.db import models
-from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils.html import strip_tags
@@ -32,7 +32,7 @@ class Post(models.Model):
     title = models.CharField(max_length=100, verbose_name='标题')
 
     #文章正文
-    body = RichTextField(verbose_name='正文')
+    body = RichTextUploadingField(verbose_name='正文')
 
     #创建时间和最后一次修改时间
     create_time = models.DateTimeField(verbose_name='创建时间')
@@ -99,7 +99,7 @@ class About(models.Model):
     # 标题
     title = models.CharField(max_length=200, verbose_name="标题")
     # 主体内容
-    body = RichTextField(verbose_name='正文')
+    body = RichTextUploadingField(verbose_name='正文')
     create_time = models.DateTimeField(verbose_name="发布日期")
     modified_time = models.DateTimeField(verbose_name="修改日期")
     is_pub = models.BooleanField(default=True, verbose_name="是否公开")
