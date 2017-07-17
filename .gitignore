@@ -7,4 +7,5 @@ mysite/server/migrations/__pycache__/
 **/settings.py
 mysite/mysite/settings.py
 settings.py
+mysite/settings.py
 *.sql
