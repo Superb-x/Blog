@@ -26,7 +26,9 @@
     window.__admin_language_code__ = "{{LANGUAGE_CODE}}";
   </script>
   <script type="text/javascript" src="{% url 'xadmin:jsi18n' %}"></script>
-  {% block extrahead %}{% endblock %}
+  {% block extrahead %}
+  <script>window.CKEDITOR_BASEPATH = '/static/ckeditor/ckeditor/';</script>
+  {% endblock %}
   {% view_block 'extrahead' %}
 </head>
 <body class="{% block bodyclass %}{% endblock %}">
