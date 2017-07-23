@@ -120,7 +120,7 @@
                 <div>
                     <span class="fh5co-post-date">{{post.create_time}}</span>
                     <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                    <p>{{post.excerpt}}</p>
+                    <p>{{post.excerpt | safe}}</p>
                 </div>
             </div>
             {% endfor %}
