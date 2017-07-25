@@ -116,7 +116,7 @@
         <div class="fh5co-post">
             {% for post in post_list %}
             <div class="fh5co-entry padding">
-                <img src="{% static 'blog/img/project-' %}{{post.pk}}.jpg" alt="">
+                <img src="{{post.thumb.url}}" alt="">
                 <div>
                     <span class="fh5co-post-date">{{post.create_time}}</span>
                     <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>

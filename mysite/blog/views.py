@@ -1,4 +1,5 @@
 import markdown
+import re
 from django.shortcuts import render, get_object_or_404
 from django.http import JsonResponse, HttpResponse
 from comments.forms import CommentFrom
@@ -26,7 +27,10 @@ class IndexView(ListView):
 
         #首先获得父类生成的传递给模板的字典
         context = super().get_context_data(**kwargs)
-
+        print(context.get('post_list'))
+        for x in context.get('post_list'):
+            print(x.body)
+            print(re.findall('<img alt=".*" src="(.*?)"', x.body))
         # 父类生成的字典中已有 paginator、page_obj、is_paginated 这三个模板变量，
         # paginator 是 Paginator 的一个实例，
         # page_obj 是 Page 的一个实例，
