@@ -160,7 +160,7 @@ class VisitorRecord(models.Model):
     http_host = models.CharField(max_length=200, verbose_name="主机")
     http_path = models.CharField(max_length=200, verbose_name="地址")
     http_user_agent = models.CharField(max_length=400, verbose_name="客户端信息")
-    ip = models.CharField(max_length=20, verbose_name="IP")
+    ip = models.CharField(max_length=30, verbose_name="IP")
     server_name = models.CharField(max_length=50, verbose_name="服务器主机名")
     create_time = models.DateTimeField(auto_now_add=True, verbose_name="请求时间")
 
