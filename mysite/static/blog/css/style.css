@@ -613,8 +613,8 @@ footer {
 }
 .fh5co-post .fh5co-entry > img {
   float: right;
-  width: 10%;
-  margin-bottom: 30px;
+  width: 100px;
+  height: 100px;
   -webkit-border-radius: 50%;
   -moz-border-radius: 50%;
   -ms-border-radius: 50%;
