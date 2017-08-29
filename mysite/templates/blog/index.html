@@ -1,215 +1,74 @@
-<!DOCTYPE HTML>
-<html>
-{% load static blog_tags %}
+<!DOCTYPE html>
+<html lang="zh">
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>刘祥麟的博客</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Free HTML5 Website Template by freehtml5.co"/>
-    <meta name="keywords"
-          content="博客 blog 个人网站 templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive, 湖南, 浏阳"/>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static blog_tags %}
+    <meta name="keywords" content="博客 blog 个人网站 templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive, 湖南, 浏阳"/>
     <meta name="author" content="刘祥麟"/>
-    <!-- Facebook and Twitter integration -->
-    <meta property="og:title" content=""/>
-    <meta property="og:image" content=""/>
-    <meta property="og:url" content=""/>
-    <meta property="og:site_name" content=""/>
-    <meta property="og:description" content=""/>
-    <meta name="twitter:title" content=""/>
-    <meta name="twitter:image" content=""/>
-    <meta name="twitter:url" content=""/>
-    <meta name="twitter:card" content=""/>
-
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-    <link href="https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,700,800" rel="stylesheet">
-    <!-- Animate.css -->
-    <link rel="stylesheet" href="{% static 'blog/css/animate.css' %}">
-    <!-- Icomoon Icon Fonts-->
-    <link rel="stylesheet" href="{% static 'blog/css/icomoon.css' %}">
-    <!-- Bootstrap  -->
-    <link rel="stylesheet" href="{% static 'blog/css/bootstrap.min.css' %}">
-
-    <!-- Theme style  -->
-    <link rel="stylesheet" href="{% static 'blog/css/style.css' %}">
-
-    <!-- Modernizr JS -->
-    <script src="{% static 'blog/js/modernizr-2.6.2.min.js' %}"></script>
-    <!-- FOR IE9 below -->
-    <!--[if lt IE 9]>
-    <script src="{% static 'blog/js/respond.min.js' %}"></script>
-    <![endif]-->
-
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <title>刘祥麟的博客</title>
 </head>
 <body>
-
-<div class="fh5co-loader"></div>
-
-<!--modal-->
-<div id="mask" class="mask fade">
-    <div class="dialog category-class">
-        {% archives as date_list %}
-        <ul class="archives">
-            {% for date in date_list %}
-            <li>
-                <a href="{% url 'blog:archives' date.year date.month %}">{{date.year}}年{{date.month}}月</a>
-            </li>
-            {% endfor %}
-        </ul>
-        <div class="footer">
-            <button type="button" class="btn btn-default btn-sm">
-                <span class="glyphicon glyphicon-remove"></span>
-            </button>
-        </div>
-    </div>
-    <div class="dialog category-class">
-        {% get_categories as category_list %}
-        <ul class="tag-list">
-            {% for category in category_list %}
-            <li><a href="{% url 'blog:category' category.pk %}">{{category.name}}({{category.num_posts}})</a></li>
-            {% endfor %}
-        </ul>
-        <div class="footer">
-            <button type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
-        </div>
-    </div>
-    <div class="dialog category-class">
-        {% get_tags as tags_list %}
-        <ul class="tag-list">
-            {% for tag in tags_list %}
-            <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}}({{tag.num_post}})</a></li>
-            {% endfor %}
-        </ul>
-        <div class="footer">
-            <button type="button" class="btn btn-default" aria-label="Left Align">
-                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
-            </button>
-        </div>
-    </div>
-</div>
-<div id="page">
-    <div id="fh5co-aside" style="background-image: url({% static 'blog/img/image_1.jpg' %})">
-        <div class="overlay"></div>
-        <div class="header">
-            <img src="{% static 'blog/img/person_3.jpg' %}" alt="">
-        </div>
-        <h1 class="blog-name">Nearw 的博客</h1>
-        <div class="aside">
-            <a href="javascript:void(0);">最新文章</a>
-            {% get_recent_posts as recent_list %}
-            <ul>
-                {% for post in recent_list %}
-                <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
-                {% endfor %}
-            </ul>
-            <a href="#" class="tag">归档</a>
-            <a href="#" class="tag">分类</a>
-            <a href="#" class="tag">标签</a>
-        </div>
-        <div class="featured">
-            <a href="{% url 'blog:about' %}"><span>关于我</span></a>
-        </div>
-    </div>
-    <div id="fh5co-main-content">
-        <div class="fh5co-post">
-            {% for post in post_list %}
-            <div class="fh5co-entry padding">
-                <img src="{{post.thumb.url}}" alt="">
-                <div>
-                    <span class="fh5co-post-date">{{post.create_time}}</span>
-                    <h2><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                    <p>{{post.excerpt | safe}}</p>
+    <div class="wrapper">
+        <header>
+            <div class="profile">
+                <div class="avatar">
+                    <img src="{% static 'img/person_3.jpg' %}" alt="">
                 </div>
-            </div>
-            {% endfor %}
-            {% if is_paginated %}
-                <nav aria-label="Page navigation">
-                    <ul class="pagination">
-                        {% if first %}
-                            <li>
-                                <a href="?page=1" aria-label="Previous">
-                                    <span aria-hidden="true">1</span>
-                                </a>
-                            </li>
-                        {% endif %}
-                        {% if left %}
-                            {% if left_has_more %}
-                                <li><a href="">···</a></li>
-                            {% endif %}
-                            {% for i in left %}
-                                <li><a href="?page={{i}}">{{i}}</a></li>
-                            {% endfor %}
-                        {% endif %}
-                        <li class="active"><a href="?page={{page_obj.number}}">{{page_obj.number}}</a></li>
-                        {% if right %}
-                            {% for i in right %}
-                                <li><a href="?page={{i}}">{{i}}</a></li>
-                            {% endfor %}
-                            {% if right_has_more %}
-                                <li><a href="">···</a></li>
-                            {% endif %}
-                        {% endif %}
-                        {% if last %}
-                            <li>
-                                <a href="?page={{paginator.num_pages}}" aria-label="Next">
-                                    <span aria-hidden="true">{{paginator.num_pages}}</span>
-                                </a>
-                            </li>
-                        {% endif %}
+                <div class="name">Nearw的博客</div>
+                <div class="item">
+                    <i class="iconfont">&#xe6c8;</i>
+                    <span>文章</span>
+                    <ol class="spread">
+                        <li>最新文章</li>
+                        <li>测试最新文章n</li>
+                        <li>最新文章sasass</li>
+                    </ol>
+                </div>
+                <div class="item">
+                    <i class="iconfont">&#xe60e;</i>
+                    标签
+                </div>
+                <div class="item">
+                    <i class="iconfont">&#xe651;</i>
+                    分类
+                </div>
+                <div class="item">
+                    <i class="iconfont">&#xe641;</i>
+                    归档
+                </div>
+                <div class="item">
+                    <i class="iconfont">&#xe72c;</i>
+                    关于
+                </div>
+                <nav class="links">
+                    <ul>
+                        <li>
+                            <a href="">
+                                <i class="iconfont">&#xe719;</i>
+                            </a>
+                        </li>
+                        <li><a href="">
+                            <i class="iconfont">&#xe675;</i>
+                        </a></li>
+                        <li><a href="">
+                            <i class="iconfont">&#xe7ea;</i>
+                        </a></li>
                     </ul>
                 </nav>
-            {% endif %}
-            <footer>
-                <div class="copyright">
-                    &copy; 2016 Free HTML5. All Rights Reserved. More Templates <a href="http://www.cssmoban.com/"
-                                                                                   target="_blank" title="模板之家">模板之家</a>
-                    - 由 <a href="http://123.56.26.224/" title="网页模板" target="_blank">刘祥麟的博客</a>修改
-                </div>
+            </div>
+        </header>
+        <div class="content">
+            <nav></nav>
+            <article>
 
-                <div class="page-view-static">
-                    <p>网站已运行: {% get_all_run_day %} 天</p>
-                    {% get_all_visit_count as total_count %}
-                    <p>总访问量: {{total_count.total_visit}} | 今日访问量: {% get_today_visit_count %}</p>
-                </div>
-                <div class="beian">
-                    <h5><a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a></h5>
-                </div>
-            </footer>
+            </article>
         </div>
+        <footer></footer>
     </div>
-</div>
-
-<div class="gototop js-top">
-    <a href="#" class="js-gotop"><i class="icon-arrow-up"></i></a>
-</div>
-
-<!-- jQuery -->
-<script src="{% static 'blog/js/jquery.min.js' %}"></script>
-<!-- jQuery Easing -->
-<script src="{% static 'blog/js/jquery.easing.1.3.js' %}"></script>
-<!-- Bootstrap -->
-<script src="{% static 'blog/js/bootstrap.min.js' %}"></script>
-<!-- Waypoints -->
-<script src="{% static 'blog/js/jquery.waypoints.min.js' %}"></script>
-<!-- Stellar Parallax -->
-<script src="{% static 'blog/js/jquery.stellar.min.js' %}"></script>
-<!-- Main -->
-<script src="{% static 'blog/js/main.js' %}"></script>
-<script>
-    var $mask = $("#mask"),
-        $dialog = $(".dialog");
-    $(".tag").click(function () {
-        console.log($(this))
-        $mask.show(200).addClass('in');
-        $dialog.eq($(this).index(".tag")).fadeIn();
-    })
-    $(".btn").click(function () {
-        $mask.removeClass("in").hide(300);
-        $(this).parents(".dialog").hide();
-    })
-</script>
 </body>
 </html>
-
