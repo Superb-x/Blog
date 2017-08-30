@@ -20,30 +20,30 @@
                     <img src="{% static 'img/person_3.jpg' %}" alt="">
                 </div>
                 <div class="name">Nearw的博客</div>
-                <div class="item">
-                    <i class="iconfont">&#xe6c8;</i>
-                    <span>文章</span>
+                <div class="item item-spread">
+                    <span><i class="iconfont">&#xe6c8;</i>文章</span>
                     <ol class="spread">
-                        <li>最新文章</li>
-                        <li>测试最新文章n</li>
-                        <li>最新文章sasass</li>
+                        <li><a href="">最新文章</a></li>
+                        <li><a href="">测试最新文章n</a></li>
+                        <li><a href="">最新文章sasass</a></li>
+                        <li><a href="">最新文章sasass</a></li>
+                        <li><a href="">最新文章sasass</a></li>
                     </ol>
                 </div>
-                <div class="item">
-                    <i class="iconfont">&#xe60e;</i>
-                    标签
+                <div class="item item-spread">
+                    <span><i class="iconfont">&#xe60e;</i>标签</span>
+                </div>
+                <div class="item item-spread">
+                    <span><i class="iconfont">&#xe651;</i>分类</span>
+                </div>
+                <div class="item item-spread">
+                    <span><i class="iconfont">&#xe641;</i>归档</span>
                 </div>
                 <div class="item">
-                    <i class="iconfont">&#xe651;</i>
-                    分类
-                </div>
-                <div class="item">
-                    <i class="iconfont">&#xe641;</i>
-                    归档
-                </div>
-                <div class="item">
-                    <i class="iconfont">&#xe72c;</i>
-                    关于
+                    <span>
+                        <i class="iconfont">&#xe72c;</i>
+                        <a href="{% url 'blog:about' %}">关于</a>
+                    </span>
                 </div>
                 <nav class="links">
                     <ul>
@@ -62,13 +62,52 @@
                 </nav>
             </div>
         </header>
-        <div class="content">
-            <nav></nav>
-            <article>
-
-            </article>
+        <div class="main">
+            <nav class="top-navbar">
+                <span class="type"><i class="iconfont">&#xe6c8;</i>文章列表 / </span>
+                <span>最近文章</span>
+                <div class="search-wrap">
+                    <form action="{% url 'haystack_search' %}">
+                        <input type="search" name="q" placeholder="站内搜索" required>
+                        <button type="submit">搜索</button>
+                    </form>
+                </div>
+            </nav>
+            <div class="article">
+                {% if error_msg %}
+                    <p>{{error_msg}}</p>
+                {% endif %}
+                {% for post in post_list %}
+                    <article>
+                        <h2 class="title"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+                        <div class="content">{{post.excerpt | safe}}</div>
+                        <a href="{{post.get_absolute_url}}" class="continue">继续阅读>></a>
+                        <p class="article-info">
+                            {{post.create_time}} · {{post.category}} · {{post.tag}}
+                            <span id = "sourceId::{{post.pk}}" class = "cy_cmt_count">0</span>
+                            评论
+                        </p>
+                    </article>
+                {% endfor %}
+                <div class="paginator">
+                    <a href="" class="active">1</a>
+                    <a href="">2</a>
+                    <a href="">3</a>
+                    <a href="">4</a>
+                </div>
+            </div>
         </div>
-        <footer></footer>
+        <footer>
+            Copyright © 2017 刘祥麟 All Rights Reserved! Powered <a href="https://www.djangoproject.com/">Django</a> by  & nginx
+            {% get_all_visit_count as total_count %}
+            <p>运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
+            <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
+        </footer>
     </div>
 </body>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/index.js' %}"></script>
+<!--获取评论数代码-->
+<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyt7fmeOc">
+</script>
 </html>

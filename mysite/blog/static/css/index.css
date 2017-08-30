@@ -1,9 +1,10 @@
+@charset "UTF-8";
 @import url("reset.css");
 @font-face {
   font-family: "iconfont";
-  src: url("../fonts/iconfont/iconfont.eot?t=1504014317246");
+  src: url("../fonts/iconfont/iconfont.eot");
   /* IE9*/
-  src: url("../fonts/iconfont/iconfont.eot?t=1504014317246#iefix") format("embedded-opentype"), url("data:application/x-font-woff;charset=utf-8;base64,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") format("woff"), url("../fonts/iconfont/iconfont.ttf?t=1504014317246") format("truetype"), url("../fonts/iconfont/iconfont.svg?t=1504014317246#iconfont") format("svg");
+  src: url("../fonts/iconfont/iconfont.eot#iefix") format("embedded-opentype"), url("../fonts/iconfont/iconfont.woff") format("woff"), url("../fonts/iconfont/iconfont.ttf") format("truetype"), url("../fonts/iconfont/iconfont.svg#iconfont") format("svg");
   /* iOS 4.1- */
 }
 .iconfont {
@@ -11,11 +12,41 @@
   font-size: 16px;
   font-style: normal;
   -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb:active {
+  -webkit-box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.35);
+  background-color: #f3f3f3;
 }
 
 html, body {
   width: 100%;
+  overflow-x: hidden;
+  font-family: Microsoft YaHei,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+  -webkit-font-feature-settings: "kern" 1;
+  font-feature-settings: "kern" 1;
+  text-rendering: geometricPrecision;
+  -webkit-font-smoothing: antialiased;
 }
 
 header {
@@ -34,7 +65,8 @@ header .avatar {
   height: 150px;
   border-radius: 50%;
   overflow: hidden;
-  margin: 60px auto 0;
+  margin: 50px auto 0;
+  border: 5px solid #fff;
 }
 header .avatar img {
   width: 100%;
@@ -55,7 +87,8 @@ header .item {
   text-align: center;
   position: relative;
   box-sizing: border-box;
-  transition: all .5s ease-in-out;
+  transition: all .3s ease-in-out;
+  cursor: pointer;
     /*&:after {
       content: "";
       display: block;
@@ -71,6 +104,26 @@ header .item {
       transform: rotate(45deg);
 
     }*/
+}
+header .item a {
+  color: #fff;
+  text-decoration: none;
+}
+header .item.item-spread {
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+header .item.active {
+  height: 200px;
+}
+header .item span {
+  transition: all .2s ease-in-out;
+}
+header .item:hover span {
+  color: #0275e5;
+}
+header .item:hover span a {
+  color: #0275e5;
 }
 header .links {
   position: absolute;
@@ -113,6 +166,117 @@ header .spread li {
   text-overflow: ellipsis;
   overflow: hidden;
   font-size: 14px;
+  height: 30px;
+  line-height: 30px;
+}
+
+/*导航栏*/
+.top-navbar {
+  width: 80%;
+  height: 60px;
+  line-height: 60px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  margin-left: 350px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  position: fixed;
+  top: 0;
+}
+.top-navbar .type {
+  color: #0275e5;
+}
+.top-navbar .search-wrap {
+  width: 300px;
+  height: 60px;
+  position: absolute;
+  z-index: 99;
+  right: 5%;
+  top: 0;
+}
+.top-navbar .search-wrap input {
+  height: 30px;
+  outline: none;
+  padding-left: 5px;
+  border: 1px solid #ccc;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+}
+.top-navbar .search-wrap button {
+  width: 40px;
+  height: 30px;
+  background: #0275e5;
+  border-radius: 5px;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+}
+
+.article {
+  margin-left: 350px;
+  margin-top: 60px;
+  padding: 50px 50px 80px 50px;
+}
+.article article {
+  border-bottom: 1px solid #ccc;
+  margin-bottom: 20px;
+}
+.article article:last-child {
+  border-bottom: none;
+}
+.article .continue {
+  display: inline-block;
+  color: #0275e5;
+  font-size: 20px;
+  text-decoration: none;
+  padding-bottom: 20px;
+}
+.article .article-info {
+  margin-bottom: 20px;
+  color: #666;
+}
+.article .title {
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+.article .title a {
+  color: #0275e5;
+  text-decoration: none;
+}
+.article .title:hover a {
+  text-decoration: underline;
+}
+.article .content {
+  margin-bottom: 20px;
+}
+.article .paginator {
+  text-align: center;
+}
+.article .paginator a {
+  color: #000;
+  text-decoration: none;
+}
+.article .paginator a.active {
+  color: #0275e5;
+  text-decoration: underline;
+}
+
+/*底部*/
+footer {
+  width: 75%;
+  height: 60px;
+  position: fixed;
+  left: 350px;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  background: #fff;
+}
+footer a {
+  color: #000;
 }
 
 /*# sourceMappingURL=index.css.map */

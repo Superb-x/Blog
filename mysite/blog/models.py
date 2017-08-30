@@ -42,7 +42,7 @@ class Post(models.Model):
 
     # 文章摘要，可以没有文章摘要，但默认情况下 CharField 要求我们必须存入数据，否则就会报错。
     # 指定 CharField 的 blank=True 参数值后就可以允许空值了。
-    excerpt = models.CharField(max_length=200, blank=True)
+    excerpt = models.CharField(max_length=200, blank=True, verbose_name='摘要')
 
     # 缩略图
     thumb = models.ImageField(verbose_name='缩略图', upload_to='uploads/%Y/%m/%d', blank=True)
@@ -64,7 +64,7 @@ class Post(models.Model):
     author = models.ForeignKey(User, verbose_name='作者')
 
     #新增view字段记录阅读量PV
-    views = models.PositiveIntegerField(default=0)
+    views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
 
     def __str__(self):
         return self.title
@@ -93,9 +93,11 @@ class Post(models.Model):
         # 如果没有缩略图
         if not self.thumb:
             # 去body中找第一张图片
-            img = re.findall('<img alt=".*" src="(.*?)"', self.body)[0]
-
-            self.thumb = img[6:]
+            try:
+                img = re.findall('<img alt=".*" src="(.*?)"', self.body)[0]
+                self.thumb = img[6:]
+            except:
+                self.thumb = "uploads/koala.jpg"
 
         #调用父类的 save 方法将数据保存在数据库中
         super(Post, self).save(*args, **kwargs)
