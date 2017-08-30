@@ -16,7 +16,7 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-$blue: #0275e5;
+$blue: #0060e5;
 @function bb($px){
   @return $px solid #fff;
 }
@@ -92,6 +92,7 @@ header {
     box-sizing: border-box;
     transition: all .3s ease-in-out;
     cursor: pointer;
+    user-select: none;
     /*&:after {
       content: "";
       display: block;
@@ -114,6 +115,9 @@ header {
     &.item-spread {
       overflow: hidden;
       transition: all 0.3s ease-in-out;
+      li {
+        font-weight: normal;
+      }
     }
     &.active {
       height: 200px;
@@ -126,6 +130,17 @@ header {
       a {
         color: $blue;
       }
+    }
+  }
+  .item-tag {
+    li {
+      display: inline-block;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 20px;
+      line-height: 20px;
+      padding: 5px 10px;
     }
   }
   .links {
@@ -186,7 +201,10 @@ header {
   position: fixed;
   top: 0;
   .type {
-    color: $blue;
+    a {
+      color: $blue;
+      text-decoration: none;
+    }
   }
   .search-wrap {
     width: 300px;
@@ -243,10 +261,10 @@ header {
     a {
       color: $blue;
       text-decoration: none;
-    }
-    &:hover {
-      a {
+      transition: all 0.2s;
+      &:hover {
         text-decoration: underline;
+        color: #337ab7;
       }
     }
   }
@@ -261,6 +279,25 @@ header {
       &.active {
         color: $blue;
         text-decoration: underline;
+      }
+    }
+  }
+  .friends-sites {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 10px;
+    p {
+      text-align: center;
+    }
+    ul {
+      text-align: center;
+      margin-top: 5px;
+    }
+    li {
+      display: inline-block;
+      position: relative;
+      a {
+        color: $blue;
       }
     }
   }

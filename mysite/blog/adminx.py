@@ -1,5 +1,5 @@
 import xadmin
-from .models import Category, Post, Tag, About, VisitorRecord, PageView
+from .models import Category, Post, Tag, About, VisitorRecord, PageView, FriendSites
 from xadmin import views
 # Register your models here.
 
@@ -21,8 +21,12 @@ class PostAdmin(object):
 class VisitorAdmin(object):
     list_display = ['http_host', 'http_path', 'http_user_agent', 'ip', 'server_name']
 
+class FriendsAdmin(object):
+    list_display = ['site_name', 'site_url', 'admin_name', 'admin_contact', 'is_pub']
+
 xadmin.site.register(Post, PostAdmin)
 xadmin.site.register(Category)
 xadmin.site.register(Tag)
 xadmin.site.register(About)
 xadmin.site.register(VisitorRecord, VisitorAdmin)
+xadmin.site.register(FriendSites, FriendsAdmin)

@@ -89,6 +89,7 @@ header .item {
   box-sizing: border-box;
   transition: all .3s ease-in-out;
   cursor: pointer;
+  user-select: none;
     /*&:after {
       content: "";
       display: block;
@@ -113,6 +114,9 @@ header .item.item-spread {
   overflow: hidden;
   transition: all 0.3s ease-in-out;
 }
+header .item.item-spread li {
+  font-weight: normal;
+}
 header .item.active {
   height: 200px;
 }
@@ -120,10 +124,19 @@ header .item span {
   transition: all .2s ease-in-out;
 }
 header .item:hover span {
-  color: #0275e5;
+  color: #0060e5;
 }
 header .item:hover span a {
-  color: #0275e5;
+  color: #0060e5;
+}
+header .item-tag li {
+  display: inline-block;
+  border: 1px solid #fff;
+  border-radius: 5px;
+  font-size: 14px;
+  height: 20px;
+  line-height: 20px;
+  padding: 5px 10px;
 }
 header .links {
   position: absolute;
@@ -183,8 +196,9 @@ header .spread li {
   position: fixed;
   top: 0;
 }
-.top-navbar .type {
-  color: #0275e5;
+.top-navbar .type a {
+  color: #0060e5;
+  text-decoration: none;
 }
 .top-navbar .search-wrap {
   width: 300px;
@@ -206,7 +220,7 @@ header .spread li {
 .top-navbar .search-wrap button {
   width: 40px;
   height: 30px;
-  background: #0275e5;
+  background: #0060e5;
   border-radius: 5px;
   border: none;
   color: #fff;
@@ -227,7 +241,7 @@ header .spread li {
 }
 .article .continue {
   display: inline-block;
-  color: #0275e5;
+  color: #0060e5;
   font-size: 20px;
   text-decoration: none;
   padding-bottom: 20px;
@@ -241,11 +255,13 @@ header .spread li {
   margin-bottom: 20px;
 }
 .article .title a {
-  color: #0275e5;
+  color: #0060e5;
   text-decoration: none;
+  transition: all 0.2s;
 }
-.article .title:hover a {
+.article .title a:hover {
   text-decoration: underline;
+  color: #337ab7;
 }
 .article .content {
   margin-bottom: 20px;
@@ -258,8 +274,27 @@ header .spread li {
   text-decoration: none;
 }
 .article .paginator a.active {
-  color: #0275e5;
+  color: #0060e5;
   text-decoration: underline;
+}
+.article .friends-sites {
+  border-top: 1px solid #ccc;
+  margin-top: 20px;
+  padding-top: 10px;
+}
+.article .friends-sites p {
+  text-align: center;
+}
+.article .friends-sites ul {
+  text-align: center;
+  margin-top: 5px;
+}
+.article .friends-sites li {
+  display: inline-block;
+  position: relative;
+}
+.article .friends-sites li a {
+  color: #0060e5;
 }
 
 /*底部*/
