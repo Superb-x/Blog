@@ -89,19 +89,40 @@
                         </p>
                     </article>
                 {% endfor %}
+                {% if is_paginated %}
                 <div class="paginator">
-                    <a href="" class="active">1</a>
-                    <a href="">2</a>
-                    <a href="">3</a>
-                    <a href="">4</a>
+                    {% if first %}
+                        <a href="?page=1"></a>
+                    {% endif %}
+                    {% if left %}
+                        {% if left_has_more %}
+                            <a href="">···</a>
+                        {% endif %}
+                        {% for i in left %}
+                            <a href="?page={{i}}">{{i}}</a>
+                        {% endfor %}
+                    {% endif %}
+                    <a href="?page={{page_obj.number}}" class="active">{{page_obj.number}}</a>
+                    {% if right %}
+                        {% for i in right %}
+                            <a href="?page={{i}}">{{i}}</a>
+                        {% endfor %}
+                        {% if right_has_more %}
+                            <a href="">···</a>
+                        {% endif %}
+                    {% endif %}
+                    {% if last %}
+                            <a href="?page={{paginator.num_pages}}">{{paginator.num_pages}}</a>
+                    {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
         <footer>
-            Copyright © 2017 刘祥麟 All Rights Reserved! Powered <a href="https://www.djangoproject.com/">Django</a> by  & nginx
             {% get_all_visit_count as total_count %}
             <p>运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
-            <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
+            <p>Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a href="https://www.djangoproject.com/">Django</a> & nginx 备案信息: <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
+</p>
         </footer>
     </div>
 </body>

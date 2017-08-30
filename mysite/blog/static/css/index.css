@@ -273,6 +273,8 @@ footer {
   text-align: center;
   font-size: 14px;
   line-height: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
   background: #fff;
 }
 footer a {
