@@ -20,3 +20,5 @@ mysite/settings.py
 *.sql
 
 mysite/media/
+
+whoosh_index/
