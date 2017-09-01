@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="wrapper">
-        <header>
+        <header id="profile">
             <div class="profile">
                 <div class="avatar">
                     <img src="{% static 'img/person_3.jpg' %}" alt="">
@@ -79,17 +79,22 @@
                 </nav>
             </div>
         </header>
-        <div class="main">
-            <nav class="top-navbar">
+        <nav class="top-navbar">
+            <div class="menu">
                 <span class="type"><a href="{% url 'blog:index' %}"><i class="iconfont">&#xe6c8;</i>首页</a> / </span>
                 <span>最近文章</span>
-                <div class="search-wrap">
-                    <form action="{% url 'haystack_search' %}">
-                        <input type="search" name="q" placeholder="站内搜索" required>
-                        <button type="submit">搜索</button>
-                    </form>
-                </div>
-            </nav>
+            </div>
+            <div class="menu-btn">
+                <i class="iconfont">&#xe6e7;</i>
+            </div>
+            <div class="search-wrap">
+                <form action="{% url 'haystack_search' %}">
+                    <input type="search" name="q" placeholder="站内搜索" required>
+                    <button type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
+        <div class="main">
             <div class="article">
                 {% if error_msg %}
                     <p>{{error_msg}}</p>
@@ -138,18 +143,24 @@
                     {% get_friends as friends_list %}
                     <ul>
                         {% for friend in friends_list %}
-                            <li><a href="{{friend.site_url}}">{{friend.site_name}}</a></li>
+                            <li>
+                                <a href="{{friend.site_url}}"
+                                   title="{{friend.site_url}}"
+                                   target="_blank"
+                                >{{friend.site_name}}</a>
+                            </li>
                         {% endfor %}
                     </ul>
                 </div>
             </div>
+            <footer>
+                {% get_all_visit_count as total_count %}
+                <p>运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
+                <p>Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a href="https://www.djangoproject.com/">Django</a> & nginx 备案信息: <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
+    </p>
+            </footer>
         </div>
-        <footer>
-            {% get_all_visit_count as total_count %}
-            <p>运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
-            <p>Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a href="https://www.djangoproject.com/">Django</a> & nginx 备案信息: <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
-</p>
-        </footer>
+        <div id="mask"></div>
     </div>
 </body>
 <script src="{% static 'js/jquery.min.js' %}"></script>
