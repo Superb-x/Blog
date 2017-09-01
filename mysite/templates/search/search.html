@@ -79,22 +79,22 @@
                 </nav>
             </div>
         </header>
+        <nav class="top-navbar">
+            <div class="menu">
+                <span class="type"><a href="{% url 'blog:index' %}"><i class="iconfont">&#xe6c8;</i>首页</a> / </span>
+                <span>最近文章</span>
+            </div>
+            <div class="menu-btn">
+                <i class="iconfont">&#xe6e7;</i>
+            </div>
+            <div class="search-wrap">
+                <form action="{% url 'haystack_search' %}">
+                    <input type="search" name="q" placeholder="站内搜索" required>
+                    <button type="submit">搜索</button>
+                </form>
+            </div>
+        </nav>
         <div class="main">
-            <nav class="top-navbar">
-                <div class="menu">
-                    <span class="type"><a href="{% url 'blog:index' %}"><i class="iconfont">&#xe6c8;</i>首页</a> / </span>
-                    <span>最近文章</span>
-                </div>
-                <div class="menu-btn">
-                    <i class="iconfont">&#xe6e7;</i>
-                </div>
-                <div class="search-wrap">
-                    <form action="{% url 'haystack_search' %}">
-                        <input type="search" name="q" placeholder="站内搜索" required>
-                        <button type="submit">搜索</button>
-                    </form>
-                </div>
-            </nav>
             <div class="article">
                 {% if query %}
                     {% for result in page.object_list %}
