@@ -51,3 +51,8 @@ def get_all_run_day():
 @register.simple_tag
 def get_all_visit_count():
     return PageView.objects.all().aggregate(total_visit=Sum('today_visit'))
+
+# 获取友情链接
+@register.simple_tag
+def get_friends():
+    return FriendSites.objects.all().filter(is_pub=True)

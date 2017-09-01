@@ -5,7 +5,7 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load static blog_tags %}
+    {% load static blog_tags highlight %}
     <meta name="keywords" content="博客 blog 个人网站 templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive, 湖南, 浏阳"/>
     <meta name="author" content="刘祥麟"/>
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
@@ -65,14 +65,14 @@
                 <nav class="links">
                     <ul>
                         <li>
-                            <a href="#">
+                            <a href="">
                                 <i class="iconfont">&#xe719;</i>
                             </a>
                         </li>
-                        <li><a href="mailto:nearwind_x@163.com">
+                        <li><a href="">
                             <i class="iconfont">&#xe675;</i>
                         </a></li>
-                        <li><a href="#">
+                        <li><a href="">
                             <i class="iconfont">&#xe7ea;</i>
                         </a></li>
                     </ul>
@@ -96,62 +96,36 @@
         </nav>
         <div class="main">
             <div class="article">
-                {% if error_msg %}
-                    <p>{{error_msg}}</p>
+                {% if query %}
+                    {% for result in page.object_list %}
+                        <article>
+                            <h2 class="title" title="{{result.object.title}}"><a href="{{result.object.get_absolute_url}}">{{result.object.title}}</a></h2>
+                            <div class="content">{% highlight result.object.body with query %}</div>
+                            <a href="{{result.object.get_absolute_url}}" class="continue">继续阅读>></a>
+                            <p class="article-info">
+                                {{result.object.create_time}} · {{result.object.category}} · {{result.object.tag}}
+                                <span id = "sourceId::{{result.object.pk}}" class = "cy_cmt_count">0</span>
+                                评论
+                            </p>
+                        </article>
+                    {% empty %}
+                        <div class="no-post">没有搜索到你想要的结果！</div>
+                    {% endfor %}
+
+                    {% if page.has_previous or page.has_next %}
+                        <div class="paginator">
+                            {% if page.has_previous %}
+                                <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
+                            {% if page.has_previous %}</a>{% endif %}
+                            |
+                            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
+                            &raquo;{% if page.has_next %}</a>{% endif %}
+                        </div>
+                    {% endif %}
+
+                {% else %}
+                    <h3>请输入关键词，如Django。</h3>
                 {% endif %}
-                {% for post in post_list %}
-                    <article>
-                        <h2 class="title" title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                        <div class="content">{{post.excerpt | safe}}</div>
-                        <a href="{{post.get_absolute_url}}" class="continue">继续阅读>></a>
-                        <p class="article-info">
-                            {{post.create_time}} · {{post.category}} · {{post.tag}}
-                            <span id = "sourceId::{{post.pk}}" class = "cy_cmt_count">0</span>
-                            评论
-                        </p>
-                    </article>
-                {% endfor %}
-                {% if is_paginated %}
-                <div class="paginator">
-                    {% if first %}
-                        <a href="?page=1"></a>
-                    {% endif %}
-                    {% if left %}
-                        {% if left_has_more %}
-                            <a href="">···</a>
-                        {% endif %}
-                        {% for i in left %}
-                            <a href="?page={{i}}">{{i}}</a>
-                        {% endfor %}
-                    {% endif %}
-                    <a href="?page={{page_obj.number}}" class="active">{{page_obj.number}}</a>
-                    {% if right %}
-                        {% for i in right %}
-                            <a href="?page={{i}}">{{i}}</a>
-                        {% endfor %}
-                        {% if right_has_more %}
-                            <a href="">···</a>
-                        {% endif %}
-                    {% endif %}
-                    {% if last %}
-                            <a href="?page={{paginator.num_pages}}">{{paginator.num_pages}}</a>
-                    {% endif %}
-                </div>
-                {% endif %}
-                <div class="friends-sites">
-                    <p>友情链接</p>
-                    {% get_friends as friends_list %}
-                    <ul>
-                        {% for friend in friends_list %}
-                            <li>
-                                <a href="{{friend.site_url}}"
-                                   title="{{friend.site_url}}"
-                                   target="_blank"
-                                >{{friend.site_name}}</a>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                </div>
             </div>
             <footer>
                 {% get_all_visit_count as total_count %}

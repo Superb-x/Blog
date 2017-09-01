@@ -1,0 +1,433 @@
+@import url("reset.css");
+// iconfont
+@font-face {
+  font-family: 'iconfont';
+  src: url('../fonts/iconfont/iconfont.eot');
+  src: url('../fonts/iconfont/iconfont.eot?#iefix') format('embedded-opentype'),
+  url('../fonts/iconfont/iconfont.woff') format('woff'),
+  url('../fonts/iconfont/iconfont.ttf') format('truetype'),
+  url('../fonts/iconfont/iconfont.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family:"iconfont" !important;
+  font-size:16px;
+  font-style:normal;
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-stroke-width: 0.2px;
+  -moz-osx-font-smoothing: grayscale;
+}
+$blue: #0060e5;
+@function bb($px){
+  @return $px solid #fff;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: #fff;
+}
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 8px;
+  background-color: #ccc;
+}
+
+::-webkit-scrollbar-thumb:active {
+    -webkit-box-shadow: inset 1px 1px 3px rgba(0,0,0,0.35);
+    background-color: #f3f3f3
+}
+
+//搜索高亮
+.highlighted {
+  color: red;
+}
+
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+  font-family: Microsoft YaHei,-apple-system,system-ui,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica Neue,Arial,sans-serif;
+  -webkit-font-feature-settings: "kern" 1;
+    font-feature-settings: "kern" 1;
+    text-rendering: geometricPrecision;
+    -webkit-font-smoothing: antialiased;
+}
+header {
+  width: 350px;
+  height: 100%;
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  background: url("../img/timg.jpg")no-repeat;
+  -webkit-background-size: cover;
+  background-size: cover;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+  .avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 50px auto 0;
+    border: 5px solid #fff;
+    transition: all 0.3s ease-in;
+    img {
+      width: 100%;
+      height: 100%;
+    }
+  }
+  .name {
+    padding: 15px 0;
+    font-weight: bolder;
+    text-align: center;
+    font-size: 24px;
+  }
+  .item {
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    font-weight: bolder;
+    font-size: 18px;
+    text-align: center;
+    position: relative;
+    box-sizing: border-box;
+    transition: all .3s ease-in-out;
+    cursor: pointer;
+    user-select: none;
+    /*&:after {
+      content: "";
+      display: block;
+      width: 10px;
+      height: 10px;
+      background: transparent;
+      position: absolute;
+      right: 30%;
+      top: 50%;
+      margin-top: -10px;
+      border-bottom: bb(2px);
+      border-right: bb(2px);
+      transform: rotate(45deg);
+
+    }*/
+    a {
+      color: #fff;
+      text-decoration: none;
+    }
+    &.item-spread {
+      overflow: hidden;
+      transition: all 0.3s ease-in-out;
+      li {
+        font-weight: normal;
+      }
+    }
+    &.active {
+      height: 200px;
+    }
+    span {
+      transition: all .2s ease-in-out;
+    }
+    &:hover span {
+      color: $blue;
+      a {
+        color: $blue;
+      }
+    }
+  }
+  .item-tag {
+    li {
+      display: inline-block;
+      border: 1px solid #fff;
+      border-radius: 5px;
+      font-size: 14px;
+      height: 20px;
+      line-height: 20px;
+      padding: 5px 10px;
+    }
+  }
+  .links {
+    position: absolute;
+    bottom: 1rem;
+    font-size: 32px;
+    width: 350px;
+    padding: 0 50px;
+    box-sizing: border-box;
+    ul {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+    }
+    li {
+      display: inline-block;
+      width: 50px;
+      height: 50px;
+      font-size: 32px;
+      padding: 5px;
+      border: 1px solid #ccc;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 50px;
+      i {
+        font-size: 40px;
+      }
+      a {
+        color: #fff;
+        text-decoration: none;
+      }
+    }
+  }
+  .spread {
+    width: 300px;
+    margin: 0 auto;
+    li {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      font-size: 14px;
+      height: 30px;
+      line-height: 30px;
+    }
+  }
+}
+/*导航栏*/
+.top-navbar {
+  width: 80%;
+  height: 60px;
+  line-height: 60px;
+  margin-left: 350px;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  padding-left: 30px;
+  box-sizing: border-box;
+  position: fixed;
+  transition: all 0.3s ease-in-out;
+  top: 0;
+  .type {
+    a {
+      color: $blue;
+      text-decoration: none;
+    }
+  }
+  .menu-btn {
+    display: none;
+  }
+  .search-wrap {
+    width: 300px;
+    height: 60px;
+    position: absolute;
+    z-index: 99;
+    right: 5%;
+    top: 0;
+    input {
+      height: 30px;
+      outline: none;
+      padding-left: 5px;
+      border: 1px solid #ccc;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      border-radius: 5px;
+    }
+    button {
+      width: 40px;
+      height: 30px;
+      background: $blue;
+      border-radius: 5px;
+      border: none;
+      color: #fff;
+      cursor: pointer;
+    }
+  }
+}
+.main {
+  margin-left: 350px;
+  transition: all 0.3s ease-in-out;
+}
+.article {
+  margin-top: 60px;
+  padding: 50px 50px 80px 50px;
+  article {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+  .continue {
+    display: inline-block;
+    color: $blue;
+    font-size: 20px;
+    text-decoration: none;
+    padding-bottom: 20px;
+  }
+  .article-info {
+    margin-bottom: 20px;
+    color: #666;
+  }
+  .title {
+    font-size: 30px;
+    margin-bottom: 20px;
+    a {
+      color: $blue;
+      text-decoration: none;
+      transition: all 0.2s;
+      &:hover {
+        text-decoration: underline;
+        color: #337ab7;
+      }
+    }
+  }
+  .content {
+    margin-bottom: 20px;
+  }
+  .paginator {
+    text-align: center;
+    a {
+      color: #000;
+      text-decoration: none;
+      &.active {
+        color: $blue;
+        text-decoration: underline;
+      }
+    }
+  }
+  .friends-sites {
+    border-top: 1px solid #ccc;
+    margin-top: 20px;
+    padding-top: 10px;
+    p {
+      text-align: center;
+    }
+    ul {
+      text-align: center;
+      margin-top: 5px;
+    }
+    li {
+      display: inline-block;
+      position: relative;
+      a {
+        color: $blue;
+        text-decoration: none;
+        display: block;
+        border-right: 1px solid #ccc;
+        padding: 0 10px;
+      }
+      &:last-child a {
+        border: none;
+      }
+    }
+  }
+}
+#mask {
+  width:  100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 8;
+  background: #000;
+  opacity: 0;
+  display: none;
+  transition: all, 0.3s ease-in-out;
+}
+/*底部*/
+footer {
+  width: 75%;
+  height: 60px;
+  position: fixed;
+  left: 350px;
+  bottom: 0;
+  border-top: 1px solid #ccc;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  padding-top: 10px;
+  box-sizing: border-box;
+  background: #fff;
+  a {
+    color: #000;
+  }
+}
+
+/*媒体查询适配*/
+ /*iphone: w < 768px*/
+@media screen and (max-width: 768px){
+    #profile {
+      width: 250px;
+      transform: translate3D(-100%, 0, 0);
+      .links {
+        width: 250px;
+        padding: 0 20px;
+      }
+    }
+  .top-navbar {
+    width: 100%;
+    background: $blue;
+    color: #fff;
+    margin-left: 0;
+    .menu {
+      display: none;
+    }
+    .menu-btn {
+      float: left;
+      padding-right: 20px;
+      display: block;
+    }
+  }
+  .main {
+    margin-left: 0;
+    .search-wrap{
+      width:  250px;
+      right: 0;
+    }
+    .article {
+      padding: 20px;
+    }
+  }
+  footer {
+    left: 0;
+    width: 100%;
+    height: 75px;
+    position: relative;
+  }
+  .opened {
+    #profile {
+      transform: translate3D(0,0,0);
+    }
+    .main {
+      transform: translate3D(250px, 0, 0);
+    }
+    .top-navbar {
+      transform: translate3D(250px, 0, 0);
+    }
+    #mask {
+      display: block;
+      opacity: 0.3;
+    }
+    .avatar {
+      width: 100px;
+      height: 100px;
+    }
+  }
+}
+/*pad: w >= 768  && w< 992*/
+@media screen and (max-width: 992px) and (min-width: 768px) {
+    .container{
+        width:750px;
+        background-color: blue;
+    }
+}
+/*中等屏幕   w >= 992  && w<1200*/
+@media screen and (max-width: 1200px) and (min-width: 992px) {
+    .container{
+        width:970px;
+        background-color: pink;
+    }
+}
