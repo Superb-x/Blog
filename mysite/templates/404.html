@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>404 Error</title>
+    <link rel="stylesheet" href="{% static 'css/page-not-found.css' %}">
+</head>
+<body>
+    <div id="container">
+        <img src="{% static 'img/404.png' %}" alt="">
+        <img src="{% static 'img/404_msg.png' %}" class="err_msg" alt="">
+        <p><a href="{% url 'blog:index' %}">返回首页</a></p>
+    </div>
+    <div class="cloud"></div>
+</body>
+</html>

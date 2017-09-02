@@ -18,6 +18,7 @@ from django.conf.urls import url, include
 from blog.tpl import *
 from django.conf.urls.static import static
 from django.conf import settings
+from blog.views import page_not_found
 
 xadmin.autodiscover()
 
@@ -31,3 +32,4 @@ urlpatterns = [
     url(r'^search/', include('haystack.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler404 = page_not_found

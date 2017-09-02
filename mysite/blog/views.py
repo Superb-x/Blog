@@ -264,7 +264,7 @@ def about(request):
     if post and len(post) > 1:
         post = post[0]
         post.increase_views()
-    return render(request, 'blog/about.html', context={'post': post})
+    return render(request, '404.html', context={'post': post})
 
 def contact(request):
     return render(request, 'blog/contact.html', context={'contact': 'contact'})
@@ -280,3 +280,5 @@ def search(request):
     post_list = Post.objects.filter(Q(title__icontains=q) | Q(body__icontains=q))
     return render(request, 'blog/index.html', {'error_msg': error_msg, 'post_list': post_list})
 
+def page_not_found(request):
+    return render(request, '404.html')
