@@ -264,7 +264,7 @@ def about(request):
     if post and len(post) > 1:
         post = post[0]
         post.increase_views()
-    return render(request, '404.html', context={'post': post})
+    return render(request, 'blog/about.html', context={'post': post})
 
 def contact(request):
     return render(request, 'blog/contact.html', context={'contact': 'contact'})
