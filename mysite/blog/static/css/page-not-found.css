@@ -1,0 +1,40 @@
+@import url(reset.css);
+body {
+  background: url("../img/error_bg.jpg") repeat-x scroll 0 0 #67ACE4;
+  overflow: hidden;
+}
+
+#container {
+  margin: 0 auto;
+  padding-top: 50px;
+  text-align: center;
+  width: 560px;
+}
+#container .err_msg {
+  margin-top: 50px;
+}
+#container p {
+  text-align: center;
+}
+#container p a {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  background: #fffaf3;
+  border-radius: 10px;
+  line-height: 40px;
+  text-align: center;
+  color: #000;
+  text-decoration: none;
+  margin-top: 50px;
+}
+
+.cloud {
+  background: url(../img/error_cloud.png) repeat-x scroll 0 0 transparent;
+  bottom: 0;
+  height: 170px;
+  position: absolute;
+  width: 100%;
+}
+
+/*# sourceMappingURL=page-not-found.css.map */
