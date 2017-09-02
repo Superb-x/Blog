@@ -6,7 +6,7 @@
 	<article class="post">
 		<div class="entry-content clearfix">
 			<figure class="img-responsive-center">
-				<img class="img-responsive" src="{% static 'blog/img/me.jpg' %}" alt="Developer Image">
+				<img class="img-responsive" src="{{v.avatar.url}}" alt="Developer Image">
 			</figure>
 			<p>{{v.body|safe}}</p>
 			<div class="height-40px"></div>
