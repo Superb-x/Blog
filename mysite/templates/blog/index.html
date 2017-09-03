@@ -21,7 +21,7 @@
                 </div>
                 <div class="name">Nearw的博客</div>
                 <div class="item item-spread">
-                    <span><i class="iconfont">&#xe6c8;</i>文章</span>
+                    <span><i class="iconfont">&#xe6c8;</i> 文章</span>
                     {% get_recent_posts as recent_list %}
                     <ol class="spread">
                         {% for post in recent_list %}
@@ -30,7 +30,7 @@
                     </ol>
                 </div>
                 <div class="item item-spread item-tag">
-                    <span><i class="iconfont">&#xe60e;</i>标签</span>
+                    <span><i class="iconfont">&#xe60e;</i> 标签</span>
                     {% get_tags as tag_list %}
                     <ol>
                         {% for tag in tag_list %}
@@ -39,7 +39,7 @@
                     </ol>
                 </div>
                 <div class="item item-spread">
-                    <span><i class="iconfont">&#xe651;</i>分类</span>
+                    <span><i class="iconfont">&#xe651;</i> 分类</span>
                     {% get_categories as cate_list %}
                     <ol>
                         {% for cate in cate_list %}
@@ -48,7 +48,7 @@
                     </ol>
                 </div>
                 <div class="item item-spread">
-                    <span><i class="iconfont">&#xe641;</i>归档</span>
+                    <span><i class="iconfont">&#xe641;</i> 归档</span>
                     {% archives as date_list %}
                     <ol>
                         {% for date in date_list %}
@@ -58,8 +58,8 @@
                 </div>
                 <div class="item">
                     <span>
-                        <i class="iconfont">&#xe72c;</i>
-                        <a href="{% url 'blog:about' %}">关于</a>
+
+                        <a href="{% url 'blog:about' %}"><i class="iconfont">&#xe72c;</i> 关于</a>
                     </span>
                 </div>
                 <nav class="links">
