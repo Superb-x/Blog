@@ -1,5 +1,5 @@
 import xadmin
-from .models import Category, Post, Tag, About, VisitorRecord, PageView, FriendSites
+from .models import Category, Post, Tag, About, VisitorRecord, FriendSites
 from xadmin import views
 # Register your models here.
 
