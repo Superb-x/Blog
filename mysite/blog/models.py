@@ -143,7 +143,6 @@ class FriendSites(models.Model):
     admin_name = models.CharField(max_length=30, verbose_name='站长名称')
     admin_contact = models.CharField(max_length=200, verbose_name='站长联系方式')
     create_time = models.DateTimeField(verbose_name='创建时间')
-    modified_time = models.DateTimeField(verbose_name='修改时间')
     is_pub = models.BooleanField(default=False, verbose_name='是否发布')
 
     def __str__(self):
