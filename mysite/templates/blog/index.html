@@ -113,7 +113,9 @@
                 {% endfor %}
                 {% if is_paginated %}
                 <div class="paginator">
-                    <a href="?page=1"></a>
+                    {% if first %}
+                        <a href="?page=1"></a>
+                    {% endif %}
                     {% if left %}
                         {% if left_has_more %}
                             <a href="">···</a>
