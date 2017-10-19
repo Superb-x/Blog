@@ -77,7 +77,7 @@
         <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
         <a class="jiathis_counter_style"></a>
     </div>
-    <script type="text/javascript" src="http://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
     <!-- JiaThis Button END -->
     <!--PC和WAP自适应版-->
     <div id="SOHUCS" sid="{{post.pk}}"></div>
@@ -87,7 +87,7 @@
             var conf = 'prod_2bea4c4371e7addce37010c9687688a6';
             var width = window.innerWidth || document.documentElement.clientWidth;
             if (width < 960) {
-                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
             } else {
                 var loadJs = function (d, a) {
                     var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
@@ -110,7 +110,7 @@
                     }
                     c.appendChild(b)
                 };
-                loadJs("http://changyan.sohu.com/upload/changyan.js", function () {
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
                     window.changyan.api.config({appid: appid, conf: conf})
                 });
             }
