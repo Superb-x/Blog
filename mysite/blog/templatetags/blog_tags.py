@@ -1,6 +1,6 @@
 import datetime
 from django import template
-from ..models import Post, Category, Tag, FriendSites, PageView, VisitorRecord
+from ..models import Post, Category, Tag, FriendSites, PageView, VisitorRecord, UserProfile
 from django.db.models import Count, Sum
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
@@ -19,8 +19,8 @@ def get_recent_posts(num=5):
 
 #归档最近文章
 @register.simple_tag
-def archives():
-    return Post.objects.dates('create_time', 'month', order='DESC')
+def archives(num=6):
+    return Post.objects.dates('create_time', 'month', order='DESC')[:num]
 
 #获取所有分类
 @register.simple_tag
@@ -56,3 +56,8 @@ def get_all_visit_count():
 @register.simple_tag
 def get_friends():
     return FriendSites.objects.all().filter(is_pub=True)
+
+# 获取用户信息
+@register.simple_tag
+def get_user_profile():
+    return UserProfile.objects.all()

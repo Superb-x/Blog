@@ -1,0 +1,125 @@
+{% extends 'base.html' %}
+
+{% block main %}
+<article class="post post-{{post.pk}}">
+    <header class="entry-header">
+        <h1 class="entry-title">{{post.title}}</h1>
+        <div class="entry-meta">
+            <span class="post-category"><a href="#">{{post.category.name}}</a></span>
+            <span class="post-date">
+                    <a href="#">
+                        <time class="entry-date" datetime="{{post.create_time}}">{{post.create_time}}</time>
+                    </a>
+                </span>
+            <span class="post-author"><a href="#">{{post.author}}</a></span>
+            <span class="comments-link"><a href="#">{{post.comment_set.count}} 评论</a></span>
+            <span class="views-count"><a href="#">{{post.views}} 阅读</a></span>
+        </div>
+    </header>
+    <div class="entry-content clearfix">
+        {{post.body|safe}}
+    </div>
+</article>
+<section class="comment-area" id="comment-area" style="display: none;">
+    <hr>
+    <h3>发表评论</h3>
+    <form action="{% url 'comments:post_comments' post.pk %}" method="post" class="comment-form">
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-4">
+                <label for="{{ form.name.id_for_label }}">名字：</label>
+                {{form.name}}
+                {{form.name.errors}}
+            </div>
+            <div class="col-md-4">
+                <label for="{{ form.email.id_for_label }}">邮箱：</label>
+                {{form.email}}
+                {{form.email.errors}}
+            </div>
+            <div class="col-md-4">
+                <label for="{{ form.url.id_for_label }}">网址：</label>
+                {{form.url}}
+                {{form.url.errors}}
+            </div>
+            <div class="col-md-12">
+                <label for="{{ form.text.id_for_label }}">评论：</label>
+                {{form.text}}
+                {{form.text.errors}}
+                <button type="submit" class="comment-btn">发表</button>
+            </div>
+        </div>    <!-- row -->
+    </form>
+    <div class="comment-list-panel">
+        <h3>评论列表，共 <span>{{post.comment_set.count}}</span> 条评论</h3>
+        <ul class="comment-list list-unstyled">
+            {% for comment in comment_list %}
+            <li class="comment-item">
+                <span class="nickname">{{comment.name}}</span>
+                <time class="submit-date" datetime="{{comment.create_time}}">{{comment.create_time}}</time>
+                <div class="text">
+                    {{comment.text}}
+                </div>
+            </li>
+            {% empty %}
+            <li><h1>暂无评论</h1></li>
+            {% endfor %}
+        </ul>
+    </div>
+</section>
+<section class="share-wrap">
+    <!-- JiaThis Button BEGIN -->
+    <div class="jiathis_style">
+        <a class="jiathis_button_qzone"></a>
+        <a class="jiathis_button_tsina"></a>
+        <a class="jiathis_button_tqq"></a>
+        <a class="jiathis_button_weixin"></a>
+        <a class="jiathis_button_renren"></a>
+        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+        <a class="jiathis_counter_style"></a>
+    </div>
+    <script type="text/javascript" src="https://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
+    <!-- JiaThis Button END -->
+    <!--PC和WAP自适应版-->
+    <div id="SOHUCS" sid="{{post.pk}}"></div>
+    <script type="text/javascript">
+        (function () {
+            var appid = 'cyt7fmeOc';
+            var conf = 'prod_2bea4c4371e7addce37010c9687688a6';
+            var width = window.innerWidth || document.documentElement.clientWidth;
+            if (width < 960) {
+                window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>');
+            } else {
+                var loadJs = function (d, a) {
+                    var c = document.getElementsByTagName("head")[0] || document.head || document.documentElement;
+                    var b = document.createElement("script");
+                    b.setAttribute("type", "text/javascript");
+                    b.setAttribute("charset", "UTF-8");
+                    b.setAttribute("src", d);
+                    if (typeof a === "function") {
+                        if (window.attachEvent) {
+                            b.onreadystatechange = function () {
+                                var e = b.readyState;
+                                if (e === "loaded" || e === "complete") {
+                                    b.onreadystatechange = null;
+                                    a()
+                                }
+                            }
+                        } else {
+                            b.onload = a
+                        }
+                    }
+                    c.appendChild(b)
+                };
+                loadJs("https://changyan.sohu.com/upload/changyan.js", function () {
+                    window.changyan.api.config({appid: appid, conf: conf})
+                });
+            }
+        })(); </script>
+</section>
+{% endblock main %}
+{% block toc %}
+<div class="widget widget-content">
+    <h3 class="widget-title">文章目录</h3>
+    {{post.toc|safe}}
+</div>
+{% endblock toc %}

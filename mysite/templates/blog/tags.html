@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="box alt">
+        <div class="row uniform">
+           {% for tag in tag_list %}
+            <div class="4u"><a href="{% url 'blog:tag' tag.pk %}"><span class="image fit"><img src="{{tag.thumb.url}}" alt="" /></span></a></div>
+           {% endfor %}
+        </div>
+    </div>
+{% endblock main %}

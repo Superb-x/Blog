@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <article class="post post-{{post.pk}}">
+        <section>
+            <h2>{{post.title}}</h2>
+            <div class="box alt">
+                <div class="row uniform">
+                    <div class="12u$"><span class="image fit"><img src="{{post.thumb.url}}" alt="" /></span></div>
+                </div>
+            </div>
+            <!--<h4>Left &amp; Right</h4>-->
+            <p>{{post.body | safe}}</p>
+        </section>
+    </article>
+{% endblock main %}

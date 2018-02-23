@@ -12,4 +12,6 @@ urlpatterns = [
     url(r'^tag/(?P<pk>[0-9]+)/$', views.tag, name='tag'),
     url(r'^about/$', views.about, name='about'),
     url(r'^contact/$', views.contact, name='contact'),
+    url(r'^archives/$', views.ArchiveListView.as_view(), name='archive_list'),
+    url(r'^tags/$', views.TagsView.as_view(), name='tag_list'),
 ]

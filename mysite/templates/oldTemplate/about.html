@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block main %}
+	{% load static %}
+	{% for v in post %}
+	<h1 class="page-title">{{v.title}}</h1>
+	<article class="post">
+		<div class="entry-content clearfix">
+			<figure class="img-responsive-center">
+				<img class="img-responsive" src="{{v.avatar.url}}" alt="Developer Image">
+			</figure>
+			<p>{{v.body|safe}}</p>
+			<div class="height-40px"></div>
+			<h2 class="title text-center">Social</h2>
+			<ul class="social">
+				<li class="facebook"><a href="#"><span class="ion-social-facebook"></span></a></li>
+				<li class="twitter"><a href="#"><span class="ion-social-twitter"></span></a></li>
+				<li class="google-plus"><a href="#"><span class="ion-social-googleplus"></span></a></li>
+				<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li>
+			</ul>
+		</div>
+	</article>
+	{% endfor %}
+{% endblock main %}

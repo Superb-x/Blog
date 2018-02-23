@@ -2,10 +2,25 @@ import markdown
 import re
 from django.db import models
 from ckeditor_uploader.fields import RichTextUploadingField
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, UserManager
 from django.urls import reverse
 from django.utils.html import strip_tags
 
+# 拓展用户模型，增加avatar字段，description字段
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, verbose_name='用户')
+    avatar = models.ImageField(default="/media/uploads/avatar/avatar.jpg", verbose_name='头像')
+    description = models.TextField(max_length=200, verbose_name='个人简介')
+
+    objects = UserManager()
+
+    # 默认返回用户的名字
+    def __str__(self):
+        return self.user.username
+
+    class Meta:
+        verbose_name = '用户信息'
+        verbose_name_plural = verbose_name
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -19,7 +34,7 @@ class Category(models.Model):
 
 class Tag(models.Model):
     name = models.CharField(max_length=100)
-
+    thumb = models.ImageField(default='/media/uploads/images/pic05.jpg', verbose_name='图标')
 
     def __str__(self):
         return self.name
@@ -61,10 +76,13 @@ class Post(models.Model):
     # django.contrib.auth 是 Django 内置的应用，专门用于处理网站用户的注册、登录等流程，User 是 Django 为我们已经写好的用户模型。
     # 这里我们通过 ForeignKey 把文章和 User 关联了起来。
     # 因为我们规定一篇文章只能有一个作者，而一个作者可能会写多篇文章，因此这是一对多的关联关系，和 Category 类似。
-    author = models.ForeignKey(User, verbose_name='作者')
+    author = models.ForeignKey(UserProfile, verbose_name='作者')
 
     #新增view字段记录阅读量PV
     views = models.PositiveIntegerField(default=0, verbose_name='浏览量')
+
+    #字数统计
+    word_count = models.IntegerField(default=0, verbose_name='字数统计')
 
     def __str__(self):
         return self.title
@@ -79,14 +97,15 @@ class Post(models.Model):
         self.save(update_fields=['views'])
 
     def save(self, *args, **kwargs):
+
+        # 首先实例化一个markdown类，用于渲染body的文本
+        md = markdown.Markdown(extensions=[
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+        ])
+
         #如果没有填写摘要
         if not self.excerpt:
-            #首先实例化一个markdown类，用于渲染body的文本
-            md = markdown.Markdown(extensions=[
-                'markdown.extensions.extra',
-                'markdown.extensions.codehilite',
-            ])
-
             #strip_tag去掉HTML文本的全部HTML标签
             self.excerpt = strip_tags(md.convert(self.body))[:54]
 
@@ -98,6 +117,9 @@ class Post(models.Model):
                 self.thumb = img[6:]
             except:
                 self.thumb = "uploads/koala.jpg"
+
+        # 统计字数
+        self.word_count = len(strip_tags(md.convert(self.body)))
 
         #调用父类的 save 方法将数据保存在数据库中
         super(Post, self).save(*args, **kwargs)

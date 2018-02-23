@@ -232,11 +232,18 @@ class ArchivesView(ListView):
         month = self.kwargs.get('month')
         return super(ArchivesView, self).get_queryset().filter(create_time__year=year, create_time__month=month)
 
-
 def archives(request, year, month):
     post_list = Post.objects.filter(create_time__year=year, create_time__month=month)
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
+
+class ArchiveListView(ListView):
+    model = Post
+    template_name = 'blog/archive.html'
+    context_object_name = 'archive_list'
+
+    def get_queryset(self):
+        return super(ArchiveListView, self).get_queryset().dates('create_time', 'month', order='DESC')
 
 class CategoryView(ListView):
     model = Post
@@ -256,6 +263,11 @@ def tag(request, pk):
     tag = get_object_or_404(Tag, pk=pk)
     post_list = Post.objects.filter(tags=tag)
     return render(request, 'blog/index.html', context={'post_list': post_list})
+
+class TagsView(ListView):
+    model = Tag
+    template_name = 'blog/tags.html'
+    context_object_name = 'tag_list'
 
 def about(request):
     post = About.objects.filter(is_pub=True)

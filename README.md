@@ -1,12 +1,7 @@
-# 基于Django与Vue.js的个人博客站点
-提交的时候一定要注意将node_modules文件夹忽略掉，手动添加.gitignore即可
+# 基于Python/Django开发的个人博客
 
-## 开发环境搭建
-进入client文件夹下
-
-    npm install
-    npm run dev
-    npm run build
+## 前言
+自己一直想做一个博客，我不是很喜欢PHP，比较喜欢Python，综合考虑之后，觉得Django适合我，于是乎说干就干了，大概花了一个月的时间，从一窍不通到勉强上线，自己也学到了很多。
 
 # 静态文件设置
 在mysite的setting.py中设置静态文件目录
@@ -19,7 +14,7 @@
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
-貌似这里设置了STATIC_ROOT之后与上边的STATICFILES_DIRS会引起冲突,具体原因还有待发掘, 执行完 `python manage.py collectstatic`就注释起来吧
+处理静态文件的时候，一定要运行python manage.py collectstatic将当前项目下的静态文件搜集起来，不然就找不到文件了
 
 这样Django会将整个项目下所有的隐藏的静态文件(admin自带的一些静态文件)都会复制到根目录static文件夹中
 

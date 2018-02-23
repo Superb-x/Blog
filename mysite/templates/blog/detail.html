@@ -1,86 +1,37 @@
 {% extends 'base.html' %}
 
+{% load blog_tags %}
+
 {% block main %}
-<article class="post post-{{post.pk}}">
-    <header class="entry-header">
-        <h1 class="entry-title">{{post.title}}</h1>
-        <div class="entry-meta">
-            <span class="post-category"><a href="#">{{post.category.name}}</a></span>
-            <span class="post-date">
-                    <a href="#">
-                        <time class="entry-date" datetime="{{post.create_time}}">{{post.create_time}}</time>
-                    </a>
-                </span>
-            <span class="post-author"><a href="#">{{post.author}}</a></span>
-            <span class="comments-link"><a href="#">{{post.comment_set.count}} 评论</a></span>
-            <span class="views-count"><a href="#">{{post.views}} 阅读</a></span>
-        </div>
-    </header>
-    <div class="entry-content clearfix">
-        {{post.body|safe}}
-    </div>
-</article>
-<section class="comment-area" id="comment-area" style="display: none;">
-    <hr>
-    <h3>发表评论</h3>
-    <form action="{% url 'comments:post_comments' post.pk %}" method="post" class="comment-form">
-        {% csrf_token %}
-        <div class="row">
-            <div class="col-md-4">
-                <label for="{{ form.name.id_for_label }}">名字：</label>
-                {{form.name}}
-                {{form.name.errors}}
-            </div>
-            <div class="col-md-4">
-                <label for="{{ form.email.id_for_label }}">邮箱：</label>
-                {{form.email}}
-                {{form.email.errors}}
-            </div>
-            <div class="col-md-4">
-                <label for="{{ form.url.id_for_label }}">网址：</label>
-                {{form.url}}
-                {{form.url.errors}}
-            </div>
-            <div class="col-md-12">
-                <label for="{{ form.text.id_for_label }}">评论：</label>
-                {{form.text}}
-                {{form.text.errors}}
-                <button type="submit" class="comment-btn">发表</button>
-            </div>
-        </div>    <!-- row -->
-    </form>
-    <div class="comment-list-panel">
-        <h3>评论列表，共 <span>{{post.comment_set.count}}</span> 条评论</h3>
-        <ul class="comment-list list-unstyled">
-            {% for comment in comment_list %}
-            <li class="comment-item">
-                <span class="nickname">{{comment.name}}</span>
-                <time class="submit-date" datetime="{{comment.create_time}}">{{comment.create_time}}</time>
-                <div class="text">
-                    {{comment.text}}
+    <article class="post post-{{post.pk}}">
+        <section>
+            <h2 class="post-title">{{post.title}}</h2>
+            <p class="post-info">字数：{{post.word_count}} · 阅读：{{post.views}} · 发布时间：{{post.create_time}}</p>
+            <!--<div class="box alt">
+                <div class="row uniform">
+                    <div class="12u$"><span class="image fit"><img src="{{post.thumb.url}}" alt="" /></span></div>
                 </div>
-            </li>
-            {% empty %}
-            <li><h1>暂无评论</h1></li>
-            {% endfor %}
-        </ul>
-    </div>
-</section>
-<section class="share-wrap">
-    <!-- JiaThis Button BEGIN -->
-    <div class="jiathis_style">
-        <a class="jiathis_button_qzone"></a>
-        <a class="jiathis_button_tsina"></a>
-        <a class="jiathis_button_tqq"></a>
-        <a class="jiathis_button_weixin"></a>
-        <a class="jiathis_button_renren"></a>
-        <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-        <a class="jiathis_counter_style"></a>
-    </div>
+            </div>-->
+            <!--<h4>Left &amp; Right</h4>-->
+            <p>{{post.body | safe}}</p>
+        </section>
+    </article>
+    <section class="share-wrap">
+        <!-- JiaThis Button BEGIN -->
+        <div class="jiathis_style">
+            <a class="jiathis_button_qzone"></a>
+            <a class="jiathis_button_tsina"></a>
+            <a class="jiathis_button_tqq"></a>
+            <a class="jiathis_button_weixin"></a>
+            <a class="jiathis_button_renren"></a>
+            <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+            <a class="jiathis_counter_style"></a>
+        </div>
+        <div id="SOHUCS" sid="{{post.pk}}"></div>
+    </section>
     <script type="text/javascript" src="https://v3.jiathis.com/code/jia.js" charset="utf-8"></script>
-    <!-- JiaThis Button END -->
-    <!--PC和WAP自适应版-->
-    <div id="SOHUCS" sid="{{post.pk}}"></div>
+        <!-- JiaThis Button END -->
+        <!--PC和WAP自适应版-->
     <script type="text/javascript">
         (function () {
             var appid = 'cyt7fmeOc';
@@ -114,12 +65,27 @@
                     window.changyan.api.config({appid: appid, conf: conf})
                 });
             }
-        })(); </script>
-</section>
+        })();
+    </script>
 {% endblock main %}
-{% block toc %}
-<div class="widget widget-content">
-    <h3 class="widget-title">文章目录</h3>
-    {{post.toc|safe}}
-</div>
-{% endblock toc %}
+
+{% block newArticle %}
+    <!-- Mini Posts -->
+    <section>
+        <h2>最新文章</h2>
+        {% get_recent_posts as recent_post_list %}
+        <ul class="posts">
+            {% for post in recent_post_list %}
+            <li>
+                <article>
+                    <header>
+                        <h3><a href="#">{{post.title}}</a></h3>
+                        <time class="published" datetime="2015-10-20">{{post.create_time}}</time>
+                    </header>
+                    <a href="#" class="image"><img src="{{post.thumb.url}}" alt=""/></a>
+                </article>
+            </li>
+            {% endfor %}
+        </ul>
+    </section>
+{% endblock newArticle %}
