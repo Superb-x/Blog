@@ -23,20 +23,15 @@
     <header id="header">
         <h1><a href="#">刘祥麟的博客</a></h1>
         <nav class="links">
-            <ul>
-                <li><a href="{% url 'blog:index' %}" class="active">首页</a></li>
-                <li><a href="{% url 'blog:archive_list' %}">归档</a></li>
-                <li><a href="{% url 'blog:tag_list' %}">标签</a></li>
-                <li><a href="#">分类</a></li>
-                <li><a href="{% url 'blog:about' %}">关于</a></li>
-            </ul>
+            {% block navigator %}
+            {% endblock navigator %}
         </nav>
         <nav class="main">
             <ul>
                 <li class="search">
                     <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="#">
-                        <input type="text" name="query" placeholder="Search"/>
+                    <form id="search" method="get" action="{% url 'haystack_search' %}">
+                        <input type="search" name="q" placeholder="Search" required>
                     </form>
                 </li>
                 <li class="menu">
@@ -51,8 +46,8 @@
 
         <!-- Search -->
         <section>
-            <form class="search" method="get" action="#">
-                <input type="text" name="query" placeholder="Search"/>
+            <form class="search" method="get" action="{% url 'haystack_search' %}">
+                <input type="search" name="q" placeholder="Search" required>
             </form>
         </section>
 
@@ -154,6 +149,15 @@
 
 </div>
 
+<section>
+    <!--访问统计-->
+    <footer class="pv">
+        <p>访问统计</p>
+        {% get_all_visit_count as total_count %}
+        <p class="detail-pv">运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
+    </footer>
+</section>
+
 <!-- Scripts -->
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'assets/js/skel.min.js' %}"></script>
@@ -164,3 +168,4 @@
 
 </body>
 </html>
+

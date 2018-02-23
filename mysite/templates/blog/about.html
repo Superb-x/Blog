@@ -1,23 +1,28 @@
 {% extends 'base.html' %}
+
+{% block navigator %}
+    <ul>
+        <li><a href="{% url 'blog:index' %}">首页</a></li>
+        <li><a href="{% url 'blog:archive_list' %}">归档</a></li>
+        <li><a href="{% url 'blog:tag_list' %}">标签</a></li>
+        <li><a href="#">分类</a></li>
+        <li><a href="{% url 'blog:about' %}" class="active">关于</a></li>
+    </ul>
+{% endblock navigator %}
+
 {% block main %}
-	{% load static %}
-	{% for v in post %}
-	<h1 class="page-title">{{v.title}}</h1>
-	<article class="post">
-		<div class="entry-content clearfix">
-			<figure class="img-responsive-center">
-				<img class="img-responsive" src="{{v.avatar.url}}" alt="Developer Image">
-			</figure>
-			<p>{{v.body|safe}}</p>
-			<div class="height-40px"></div>
-			<h2 class="title text-center">Social</h2>
-			<ul class="social">
-				<li class="facebook"><a href="#"><span class="ion-social-facebook"></span></a></li>
-				<li class="twitter"><a href="#"><span class="ion-social-twitter"></span></a></li>
-				<li class="google-plus"><a href="#"><span class="ion-social-googleplus"></span></a></li>
-				<li class="tumblr"><a href="#"><span class="ion-social-tumblr"></span></a></li>
-			</ul>
-		</div>
-	</article>
+	{% for post in post_list %}
+		<article class="post post-{{post.pk}}">
+			<section>
+				<h2>{{post.title}}</h2>
+				<div class="box alt">
+					<div class="row uniform">
+						<div class="12u$"><span class="image fit"><img src="{{post.avatar.url}}" alt="" /></span></div>
+					</div>
+				</div>
+				<!--<h4>Left &amp; Right</h4>-->
+				<p>{{post.body | safe}}</p>
+			</section>
+		</article>
 	{% endfor %}
 {% endblock main %}

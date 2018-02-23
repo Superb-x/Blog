@@ -270,13 +270,10 @@ class TagsView(ListView):
     context_object_name = 'tag_list'
 
 def about(request):
-    post = About.objects.filter(is_pub=True)
+    post = About.objects.all()
     # 如果有多篇文章
 
-    if post and len(post) > 1:
-        post = post[0]
-        post.increase_views()
-    return render(request, 'blog/about.html', context={'post': post})
+    return render(request, 'blog/about.html', context={'post_list': post})
 
 def contact(request):
     return render(request, 'blog/contact.html', context={'contact': 'contact'})

@@ -1,145 +1,78 @@
-<!DOCTYPE html>
-<html lang="zh">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    {% load static blog_tags highlight %}
-    <meta name="keywords" content="博客 blog 个人网站 templates, free html5, free template, free bootstrap, free website template, html5, css3, mobile first, responsive, 湖南, 浏阳"/>
-    <meta name="author" content="刘祥麟"/>
-    <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'css/index.css' %}">
-    <title>刘祥麟的博客</title>
-</head>
-<body>
-    <div class="wrapper">
-        <header id="profile">
-            <div class="profile">
-                <div class="avatar">
-                    <img src="{% static 'img/person_3.jpg' %}" alt="">
-                </div>
-                <div class="name">Nearw的博客</div>
-                <div class="item item-spread">
-                    <span><i class="iconfont">&#xe6c8;</i>文章</span>
-                    {% get_recent_posts as recent_list %}
-                    <ol class="spread">
-                        {% for post in recent_list %}
-                            <li><a href="{{post.get_absolute_url}}">{{post.title}}</a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                <div class="item item-spread item-tag">
-                    <span><i class="iconfont">&#xe60e;</i>标签</span>
-                    {% get_tags as tag_list %}
-                    <ol>
-                        {% for tag in tag_list %}
-                            <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}}({{tag.num_post}})</a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                <div class="item item-spread">
-                    <span><i class="iconfont">&#xe651;</i>分类</span>
-                    {% get_categories as cate_list %}
-                    <ol>
-                        {% for cate in cate_list %}
-                            <li><a href="{% url 'blog:category' cate.pk %}">{{cate.name}}</a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                <div class="item item-spread">
-                    <span><i class="iconfont">&#xe641;</i>归档</span>
-                    {% archives as date_list %}
-                    <ol>
-                        {% for date in date_list %}
-                            <li><a href="{% url 'blog:archives' date.year date.month %}">{{date.year}}年{{date.month}}月</a></li>
-                        {% endfor %}
-                    </ol>
-                </div>
-                <div class="item">
-                    <span>
-                        <i class="iconfont">&#xe72c;</i>
-                        <a href="{% url 'blog:about' %}">关于</a>
-                    </span>
-                </div>
-                <nav class="links">
-                    <ul>
-                        <li>
-                            <a href="">
-                                <i class="iconfont">&#xe719;</i>
-                            </a>
-                        </li>
-                        <li><a href="">
-                            <i class="iconfont">&#xe675;</i>
-                        </a></li>
-                        <li><a href="">
-                            <i class="iconfont">&#xe7ea;</i>
-                        </a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
-        <nav class="top-navbar">
-            <div class="menu">
-                <span class="type"><a href="{% url 'blog:index' %}"><i class="iconfont">&#xe6c8;</i>首页</a> / </span>
-                <span>最近文章</span>
-            </div>
-            <div class="menu-btn">
-                <i class="iconfont">&#xe6e7;</i>
-            </div>
-            <div class="search-wrap">
-                <form action="{% url 'haystack_search' %}">
-                    <input type="search" name="q" placeholder="站内搜索" required>
-                    <button type="submit">搜索</button>
-                </form>
-            </div>
-        </nav>
-        <div class="main">
-            <div class="article">
-                {% if query %}
-                    {% for result in page.object_list %}
-                        <article>
-                            <h2 class="title" title="{{result.object.title}}"><a href="{{result.object.get_absolute_url}}">{{result.object.title}}</a></h2>
-                            <div class="content">{% highlight result.object.body with query %}</div>
-                            <a href="{{result.object.get_absolute_url}}" class="continue">继续阅读>></a>
-                            <p class="article-info">
-                                {{result.object.create_time}} · {{result.object.category}} · {{result.object.tag}}
-                                <span id = "sourceId::{{result.object.pk}}" class = "cy_cmt_count">0</span>
-                                评论
-                            </p>
-                        </article>
-                    {% empty %}
-                        <div class="no-post">没有搜索到你想要的结果！</div>
-                    {% endfor %}
+{% extends 'base.html' %}
 
-                    {% if page.has_previous or page.has_next %}
-                        <div class="paginator">
-                            {% if page.has_previous %}
-                                <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
-                            {% if page.has_previous %}</a>{% endif %}
-                            |
-                            {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
-                            &raquo;{% if page.has_next %}</a>{% endif %}
-                        </div>
-                    {% endif %}
+{% load static blog_tags highlight %}
 
-                {% else %}
-                    <h3>请输入关键词，如Django。</h3>
-                {% endif %}
-            </div>
-            <footer>
-                {% get_all_visit_count as total_count %}
-                <p>运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
-                <p>Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a href="https://www.djangoproject.com/">Django</a> & nginx 备案信息: <a href="http://www.miibeian.gov.cn">湘ICP备 17013572号</a>
-    </p>
-            </footer>
-        </div>
-        <div id="mask"></div>
+{% block navigator %}
+    <ul>
+        <li><a href="{% url 'blog:index' %}">首页</a></li>
+        <li><a href="{% url 'blog:archive_list' %}">归档</a></li>
+        <li><a href="{% url 'blog:tag_list' %}">标签</a></li>
+        <li><a href="#">分类</a></li>
+        <li><a href="{% url 'blog:about' %}">关于</a></li>
+    </ul>
+{% endblock navigator %}
+
+{% block main %}
+    <!-- Search -->
+    <div class="article">
+        {% if query %}
+            {% for result in page.object_list %}
+                <article>
+                    <h2 class="title" title="{{result.object.title}}"><a href="{{result.object.get_absolute_url}}">{{result.object.title}}</a></h2>
+                    <div class="content">{% highlight result.object.body with query %}</div>
+                    <a href="{{result.object.get_absolute_url}}" class="continue">继续阅读>></a>
+                    <p class="article-info">
+                        {{result.object.create_time}} · {{result.object.category}} · {{result.object.tag}}
+                        <span id = "sourceId::{{result.object.pk}}" class = "cy_cmt_count">0</span>
+                        评论
+                    </p>
+                </article>
+            {% empty %}
+                <div class="no-post">没有搜索到你想要的结果！</div>
+            {% endfor %}
+
+            {% if page.has_previous or page.has_next %}
+                <div class="paginator">
+                    {% if page.has_previous %}
+                        <a href="?q={{ query }}&amp;page={{ page.previous_page_number }}">{% endif %}&laquo; Previous
+                    {% if page.has_previous %}</a>{% endif %}
+                    |
+                    {% if page.has_next %}<a href="?q={{ query }}&amp;page={{ page.next_page_number }}">{% endif %}Next
+                    &raquo;{% if page.has_next %}</a>{% endif %}
+                </div>
+            {% endif %}
+
+        {% else %}
+            <h3>请输入关键词，如Django。</h3>
+        {% endif %}
     </div>
-</body>
-<script src="{% static 'js/jquery.min.js' %}"></script>
-<script src="{% static 'js/index.js' %}"></script>
-<!--获取评论数代码-->
-<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyt7fmeOc">
-</script>
-</html>
+
+    {% if is_paginated %}
+        <!-- Pagination -->
+        <ul class="actions pagination">
+            {% if first %}
+                <li><a href="">1</a></li>
+            {% endif %}
+            {% if left %}
+                {% if left_has_more %}
+                    <li><a href="">...</a></li>
+                {% endif %}
+                {% for i in left %}
+                    <li><a href="?page={{i}}">{{i}}</a></li>
+                {% endfor %}
+            {% endif %}
+                <li><a href="?page={{page_obj.number}}" class="active">{{page_obj.number}}</a></li>
+            {% if right %}
+                {% for i in right %}
+                    <li><a href="?page={{i}}">{{i}}</a></li>
+                {% endfor %}
+                {% if right_has_more %}
+                    <li><a href="">···</a></li>
+                {% endif %}
+            {% endif %}
+            {% if last %}
+                    <li><a href="?page={{paginator.num_pages}}">{{paginator.num_pages}}</a></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endblock main %}

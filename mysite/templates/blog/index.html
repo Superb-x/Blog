@@ -2,6 +2,16 @@
 
 {% load blog_tags %}
 
+{% block navigator %}
+    <ul>
+        <li><a href="{% url 'blog:index' %}" class="active">首页</a></li>
+        <li><a href="{% url 'blog:archive_list' %}">归档</a></li>
+        <li><a href="{% url 'blog:tag_list' %}">标签</a></li>
+        <li><a href="#">分类</a></li>
+        <li><a href="{% url 'blog:about' %}">关于</a></li>
+    </ul>
+{% endblock navigator %}
+
 {% block main %}
 <!-- Post -->
     {% if error_msg %}
@@ -12,7 +22,7 @@
         <header>
             <div class="title">
                 <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                <p>{{post.excerpt | safe}}</p>
+                {{post.excerpt | safe}}
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01">{{post.create_time}}</time>
