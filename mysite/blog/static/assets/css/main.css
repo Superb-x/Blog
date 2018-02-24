@@ -3189,6 +3189,10 @@
 		flex-grow: 1;
 		-ms-flex: 1;
 		width: 100%;
+		max-width: 1050px;
+	}
+	#main p img {
+		width: 100%;
 	}
 
 /* Sidebar */
