@@ -3,7 +3,6 @@
 node_modules/
 
 mysite/mysite/__pycache__/
-mysite/server/migrations/__pycache__/
 
 *.pyc
 
