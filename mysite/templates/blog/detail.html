@@ -106,7 +106,10 @@
                     <h3><a href="#">{{post.title}}</a></h3>
                     <time class="published" datetime="2015-10-20">{{post.create_time}}</time>
                 </header>
-                <a href="#" class="image"><img src="{{post.thumb.url}}" alt=""/></a>
+                <!--如果文章有图片就显示，没有就不渲染当前节点-->
+                {% if post.thumb %}
+                    <a href="#" class="image"><img src="{{post.thumb.url}}" alt=""/></a>
+                {% endif %}
             </article>
         </li>
         {% endfor %}
