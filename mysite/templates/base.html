@@ -136,6 +136,17 @@
                 {% endfor %}
             </ul>
         </section>
+
+        <!--friends sites-->
+        <section>
+            <h2>友情链接</h2>
+            {% get_friends as friends_list %}
+            <ul>
+                {% for friend in friends_list %}
+                <li><a href="{{friend.site_url}}" target="_blank">{{friend.site_name}}</a></li>
+                {% endfor %}
+            </ul>
+        </section>
         <!-- Footer -->
         <section id="footer">
             <ul class="icons">
