@@ -55,7 +55,7 @@ def get_all_visit_count():
 # 获取友情链接
 @register.simple_tag
 def get_friends():
-    return FriendSites.objects.all().filter(is_pub=True)
+    return FriendSites.objects.all()
 
 # 获取用户信息
 @register.simple_tag

@@ -265,9 +265,6 @@ class FriendsView(ListView):
     template_name = 'blog/friends.html'
     context_object_name = 'friends_list'
 
-    def get_queryset(self):
-        return super(FriendsView, self).get_queryset().filter(is_pub=True)
-
 # 关于
 def about(request):
     post = About.objects.all()
