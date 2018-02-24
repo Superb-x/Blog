@@ -140,7 +140,7 @@ class About(models.Model):
     modified_time = models.DateTimeField(verbose_name="修改日期")
     veiws = models.PositiveIntegerField(default=0, verbose_name="访问量")
     avatar = models.ImageField(blank=True, verbose_name="头像", upload_to="uploads/avatar")
-    is_pub = models.BooleanField(blank=True, verbose_name='是否发布')
+    is_pub = models.BooleanField(default=True, verbose_name='是否发布')
     class Meta:
         verbose_name = '关于'
         verbose_name_plural = verbose_name
