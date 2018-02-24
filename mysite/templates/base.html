@@ -141,9 +141,6 @@
                 <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
                 <li><a href="mailto:lxl9435@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>
             </ul>
-            <p class="copyright">Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a
-                    href="https://www.djangoproject.com/">Django</a> 备案信息:
-                <a href="http://www.miibeian.gov.cn" target="_blank">湘ICP备 17013572号</a></p>
         </section>
 
     </section>
@@ -156,6 +153,10 @@
         <p>访问统计</p>
         {% get_all_visit_count as total_count %}
         <p class="detail-pv">运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
+        <p class="copyright">Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a
+                href="https://www.djangoproject.com/">Django</a> 备案信息:
+            <a href="http://www.miibeian.gov.cn" target="_blank">湘ICP备 17013572号</a>
+        </p>
     </footer>
 </section>
 

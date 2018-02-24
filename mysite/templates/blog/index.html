@@ -30,7 +30,10 @@
                         src="{{post.author.avatar.url}}" alt=""/></a>
             </div>
         </header>
-        <a href="#" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
+        <!--如果当前文章有缩略图，就显示出来-->
+        {% if post.thumb %}
+            <a href="#" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
+        {% endif %}
         <footer>
             <ul class="actions">
                 <li><a href="{{post.get_absolute_url}}" class="button big">继续阅读</a></li>

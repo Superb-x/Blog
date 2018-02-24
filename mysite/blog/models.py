@@ -116,7 +116,7 @@ class Post(models.Model):
                 img = re.findall('<img alt=".*" src="(.*?)"', self.body)[0]
                 self.thumb = img[6:]
             except:
-                self.thumb = "uploads/koala.jpg"
+                self.thumb = None
 
         # 统计字数
         self.word_count = len(strip_tags(md.convert(self.body)))
