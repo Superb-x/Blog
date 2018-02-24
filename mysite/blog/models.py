@@ -159,13 +159,12 @@ class FriendSites(models.Model):
     友情链接
     """
     site_name = models.CharField(max_length=20, blank=False, verbose_name='站点名称')
-    site_intro = models.TextField(blank="没有填写简介", verbose_name='简介')
+    site_intro = models.TextField(default="没有填写简介", verbose_name='简介')
     site_url = models.URLField(blank=False, max_length=200, verbose_name='链接')
     admin_name = models.CharField(max_length=30, verbose_name='站长名称')
     admin_contact = models.CharField(max_length=200, verbose_name='站长联系方式')
     create_time = models.DateTimeField(verbose_name='创建时间')
     modified_time = models.DateTimeField(verbose_name='修改时间')
-    is_pub = models.BooleanField(default=False, verbose_name='是否发布')
     site_thumb = models.ImageField(blank=True, verbose_name="缩略图")
 
     def __str__(self):
