@@ -172,18 +172,7 @@ class PostDetailView(DetailView):
 
     def get_object(self, queryset=None):
         #重写get_object方法是因为需要对post的body进行处理
-        post = super(PostDetailView, self).get_object(queryset=None)
-
-        md = markdown.Markdown(extensions=[
-            'markdown.extensions.extra',
-            'markdown.extensions.codehilite',
-            'markdown.extensions.toc'
-        ])
-
-        post.body = md.convert(post.body)
-        post.toc = md.toc
-
-        return post
+        return super(PostDetailView, self).get_object(queryset=None)
 
     def get_context_data(self, **kwargs):
         # 覆写 get_context_data 的目的是因为除了将 post 传递给模板外（DetailView 已经帮我们完成），
