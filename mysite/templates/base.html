@@ -6,6 +6,8 @@
     <meta charset="utf-8"/>
     <meta name="keyword" content="博客,刘祥麟的博客,前端,web,Django,Python,Java,HTML5,CSS,奇虎360">
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0"/>
+    <!--the highlight plugin stylesheet-->
+    <link rel="stylesheet" href="{% static 'css/highlights/github.css' %}">
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
     <!--[if lte IE 8]>
     <script src="{% static 'assets/js/ie/html5shiv.js' %}"></script><![endif]-->
@@ -56,27 +58,27 @@
         <section>
             <ul class="links">
                 <li>
-                    <a href="#">
+                    <a href="{% url 'blog:index' %}">
                         <h3>首页</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'blog:archives' %}">
                         <h3>归档</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'blog:tags' %}">
                         <h3>标签</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="/tags">
+                    <a href="#">
                         <h3>分类</h3>
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="{% url 'blog:about' %}">
                         <h3>关于</h3>
                     </a>
                 </li>
