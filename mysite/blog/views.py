@@ -2,7 +2,7 @@ import markdown
 import re
 from django.shortcuts import render, get_object_or_404
 from comments.forms import CommentFrom
-from .models import Post, Category, Tag, About
+from .models import Post, Category, Tag, About, FriendSites
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.db.models import Q
@@ -149,8 +149,7 @@ class IndexView(ListView):
 
         return data
 
-
-
+# 详情
 class PostDetailView(DetailView):
     model = Post
     template_name = 'blog/detail.html'
@@ -225,7 +224,7 @@ def archives(request, year, month):
     post_list = Post.objects.filter(create_time__year=year, create_time__month=month)
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
-
+# 归档
 class ArchiveListView(ListView):
     model = Post
     template_name = 'blog/archive.html'
@@ -234,6 +233,7 @@ class ArchiveListView(ListView):
     def get_queryset(self):
         return super(ArchiveListView, self).get_queryset().dates('create_time', 'month', order='DESC')
 
+# 分类
 class CategoryView(ListView):
     model = Post
     template_name = 'blog/index.html'
@@ -253,11 +253,22 @@ def tag(request, pk):
     post_list = Post.objects.filter(tags=tag)
     return render(request, 'blog/index.html', context={'post_list': post_list})
 
+# 标签视图函数
 class TagsView(ListView):
     model = Tag
     template_name = 'blog/tags.html'
     context_object_name = 'tag_list'
 
+# 友链
+class FriendsView(ListView):
+    model = FriendSites
+    template_name = 'blog/friends.html'
+    context_object_name = 'friends_list'
+
+    def get_queryset(self):
+        return super(FriendsView, self).get_queryset().filter(is_pub=True)
+
+# 关于
 def about(request):
     post = About.objects.all()
     # 如果有多篇文章
@@ -280,3 +291,5 @@ def search(request):
 
 def page_not_found(request):
     return render(request, '404.html')
+
+

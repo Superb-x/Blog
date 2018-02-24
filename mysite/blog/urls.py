@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^contact/$', views.contact, name='contact'),
     url(r'^archives/$', views.ArchiveListView.as_view(), name='archive_list'),
     url(r'^tags/$', views.TagsView.as_view(), name='tag_list'),
+    url(r'^friends/$', views.FriendsView.as_view(), name='friends')
 ]
