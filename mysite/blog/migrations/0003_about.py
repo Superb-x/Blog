@@ -20,7 +20,6 @@ class Migration(migrations.Migration):
                 ('body', models.TextField(verbose_name='正文')),
                 ('create_time', models.DateTimeField(verbose_name='发布日期')),
                 ('modified_time', models.DateTimeField(verbose_name='修改日期')),
-                ('is_pub', models.BooleanField(default=True, verbose_name='是否公开')),
                 ('veiws', models.PositiveIntegerField(default=0, verbose_name='访问量')),
             ],
             options={
