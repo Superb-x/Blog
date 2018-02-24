@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block navigator %}
+    <ul>
+        <li><a href="{% url 'blog:index' %}">首页</a></li>
+        <li><a href="{% url 'blog:archive_list' %}">归档</a></li>
+        <li><a href="{% url 'blog:tag_list' %}" class="active">标签</a></li>
+        <li><a href="#">分类</a></li>
+        <li><a href="{% url 'blog:about' %}">关于</a></li>
+    </ul>
+{% endblock navigator %}
+
+{% block main %}
+    <div class="box alt">
+        <div class="row uniform">
+           {% for tag in tag_list %}
+            <div class="4u"><a href="{% url 'blog:tag' tag.pk %}"><span class="image fit"><img src="{{tag.thumb.url}}" alt="" /></span></a></div>
+           {% endfor %}
+        </div>
+    </div>
+{% endblock main %}
