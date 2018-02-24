@@ -19,7 +19,7 @@ class PostAdmin(object):
     list_display = ['title', 'create_time', 'modified_time', 'category', 'author']
 
 class FriendsAdmin(object):
-    list_display = ['site_name', 'site_url', 'admin_name', 'admin_contact', 'is_pub']
+    list_display = ['site_name', 'site_url', 'admin_name', 'admin_contact', 'site_intro']
 
 class VisitorAdmin(object):
     list_display = ['http_host', 'http_path', 'http_user_agent', 'ip', 'server_name']
