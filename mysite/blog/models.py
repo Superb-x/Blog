@@ -109,14 +109,14 @@ class Post(models.Model):
             #strip_tag去掉HTML文本的全部HTML标签
             self.excerpt = strip_tags(md.convert(self.body))[:54]
 
-        # 如果没有缩略图
-        if not self.thumb:
-            # 去body中找第一张图片
-            try:
-                img = re.findall('<img alt=".*" src="(.*?)"', self.body)[0]
-                self.thumb = img[6:]
-            except:
-                self.thumb = None
+        # 如果当前文章传了图片，那么取第一张图作为本章的缩略图
+        try:
+            img = re.findall('<img src="(.*?)"', self.body)[0]
+            self.thumb = img[6:]
+        except:
+            # 如果没找到图片，就啥也不做
+            pass
+
 
         # 统计字数
         self.word_count = len(strip_tags(md.convert(self.body)))
