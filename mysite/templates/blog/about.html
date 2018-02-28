@@ -16,11 +16,13 @@
 		<article class="post post-{{post.pk}}">
 			<section>
 				<h2>{{post.title}}</h2>
-				<div class="box alt">
-					<div class="row uniform">
-						<div class="12u$"><span class="image fit"><img src="{{post.avatar.url}}" alt="" /></span></div>
+				{% if post.avatar %}
+					<div class="box alt">
+						<div class="row uniform">
+							<div class="12u$"><span class="image fit"><img src="{{post.avatar.url}}" alt="" /></span></div>
+						</div>
 					</div>
-				</div>
+				{% endif %}
 				<!--<h4>Left &amp; Right</h4>-->
 				<p>{{post.body | safe}}</p>
 			</section>
