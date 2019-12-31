@@ -40,7 +40,7 @@ requests==2.13.0
 service-identity==17.0.0
 sip==4.19.1
 six==1.10.0
-Twisted==17.1.0
+Twisted==19.7.0
 uritemplate==3.0.0
 w3lib==1.17.0
 Werkzeug==0.12
