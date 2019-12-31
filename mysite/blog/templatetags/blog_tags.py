@@ -17,7 +17,7 @@ def current_time(format_string):
 def get_recent_posts(num=5):
     return Post.objects.all().order_by('-create_time')[:num]
 
-#归档最近文章
+#归档文章归档
 @register.simple_tag
 def archives(num=6):
     return Post.objects.dates('create_time', 'month', order='DESC')[:num]

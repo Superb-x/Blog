@@ -12,180 +12,238 @@
     <link rel="shortcut icon" href="{% static 'favicon.ico' %}">
     <!--[if lte IE 8]>
     <script src="{% static 'assets/js/ie/html5shiv.js' %}"></script><![endif]-->
-    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>
-    <!--[if lte IE 9]>
-    <link rel="stylesheet" href="{% static 'assets/css/ie9.css' %}"/><![endif]-->
-    <!--[if lte IE 8]>
-    <link rel="stylesheet" href="{% static 'assets/css/ie8.css' %}"/><![endif]-->
+    <!--<link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>-->
 </head>
 <body>
+<style>
+    body {
+        background: #f7f7f7;
+    }
+    a {
+        color: #666;
+        text-decoration: none;
+    }
+    ul,ol,dl{
+        list-style: none;
+    }
+    *{
+        margin:0;
+        padding:0;
+    }
+    .header {
+        width: 100%;
+        height:60px;
+        line-height: 60px;
+        box-shadow: 1px 1px 8px rgba(0,0,0,.3);
+        background: #fff;
+    }
+    .header .header-content {
+        width: 1200px;
+        height:60px;
+        margin:0 auto;
+    }
+    .header .left {
+        overflow: hidden;
+        float: left;
+    }
+    .header .left h1 {
+        float: left;
+        font-size: 16px;
+    }
+    .header .left h1 a {
+        color: #ff8d00;
+        text-decoration: none;
+    }
+    .header .navbar {
+        float: left;
+        margin-left:20px;
+    }
+    .header .navbar li {
+        display: inline-block;
+        width:100px;
+        text-align: center;
+    }
+    .header .navbar li a{
+        color: #333;
+        text-decoration: none;
+    }
+    .header .navbar li .active {
+        font-weight: bolder;
+        color: #000;
+    }
+    .header .right {
+        float: right;
+    }
+    #search {
+        float: left;
+    }
+    .content {
+        width:1200px;
+        padding: 20px;
+        margin: 20px auto;
+        background: #fff;
+        box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+    }
+    .content:after {
+        content: "";
+        display: block;
+        height: 0;
+        clear: both;
+    }
+    .content .content-box {
+        width: 800px;
+        float: left;
+    }
+    .content .side-box {
+        width: 300px;
+        float: right;
+    }
+    .content-box .post {
+        margin-bottom:20px;
+    }
+    .content-box .post h2{
+        color: #333;
+        font-size: 18px;
 
-<!-- Wrapper -->
-<div id="wrapper">
+    }
+    .content-box .post h2 a {
+        color: #333;
+        text-decoration: none;
+    }
+    .content-box .post .post-desc {
+        font-size: 14px;
+        line-height: 22px;
+        color: #666;
+        margin-bottom: 10px;
+    }
+    .content-box .post .publish-time {
+        text-align: left;
+        font-size: 12px;
+        color: #666;
+    }
+    .content-box .post img {
+        max-width: 100%;
+    }
+    .side-box h2 {
+        font-size: 16px;
+    }
+    .side-box ul {
+        list-style: none;
+    }
+    .side-box ul li {
+        line-height: 22px;
+    }
+    .side-box ul li a {
+        font-size: 14px;
+    }
+    .side-box>div {
+        margin-bottom: 20px;
+    }
+    .footer {
+        font-size:14px;
+        color: #666;
+        width:1200px;
+        margin:0 auto;
+        text-align: center;
+    }
+</style>
 
+
+<div>
     <!-- Header -->
-    <header id="header">
-        <h1><a href="#">刘祥麟的博客</a></h1>
-        <nav class="links">
-            {% block navigator %}
-            {% endblock navigator %}
-        </nav>
-        <nav class="main">
-            <ul>
-                <li class="search">
-                    <a class="fa-search" href="#search">Search</a>
-                    <form id="search" method="get" action="{% url 'haystack_search' %}">
-                        <input type="search" name="q" placeholder="Search" required>
+    <div class="header">
+        <div class="header-content">
+            <div class="left">
+                <h1><a href="/">Mr.L's Blog</a></h1>
+                <div class="navbar">
+                    {% block navigator %}
+                    {% endblock navigator %}
+                </div>
+            </div>
+            <div class="right">
+                <div class="search">
+                    <form id="search" method="get" autocomplete="off" action="{% url 'haystack_search' %}">
+                        <input type="search" name="q" placeholder="JavaScript" required>
+                        <button type="submit" class="fa-search" href="#search">站内搜索</button>
                     </form>
-                </li>
-                <li class="menu">
-                    <a class="fa-bars" href="#menu">Menu</a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Menu -->
-    <section id="menu">
-
-        <!-- Search -->
-        <section>
-            <form class="search" method="get" action="{% url 'haystack_search' %}">
-                <input type="search" name="q" placeholder="Search" required>
-            </form>
-        </section>
-
-        <!-- Links -->
-        <section>
-            <ul class="links">
-                <li>
-                    <a href="{% url 'blog:index' %}">
-                        <h3>首页</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'blog:archive_list' %}">
-                        <h3>归档</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'blog:tag_list' %}">
-                        <h3>标签</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>分类</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <h3>友链</h3>
-                    </a>
-                </li>
-                <li>
-                    <a href="{% url 'blog:about' %}">
-                        <h3>关于</h3>
-                    </a>
-                </li>
-            </ul>
-        </section>
-    </section>
-
-    <!-- Main -->
-    <div id="main">
-        {% block main %}
-        {% endblock main %}
+                </div>
+            </div>
+        </div>
     </div>
+    <div class="content">
+        <div class="content-box">
+            {% block main %}
+            {% endblock main %}
+        </div>
+        <div class="side-box">
+            <!-- 最新 文章 -->
+            {% block newArticle %}
+            {% endblock newArticle %}
+            <div class="archive">
+                <h2>归档</h2>
+                {% archives as archive_list %}
+                <ul>
+                    {% for archive in archive_list %}
+                    <li><a href="{% url 'blog:archives' archive.year archive.month %}">{{archive.year}} 年 {{archive.month}}
+                        月</a></li>
+                    {% empty %}
+                    <li><a href="">暂无归档</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div>
+                <h2>文章分类</h2>
+                {% get_categories as cate_list %}
+                <ul>
+                    {% for category in cate_list %}
+                    <li>
+                        <a href="{% url 'blog:category' category.pk %}">{{category.name}} （{{category.num_posts}}）</a>
+                    </li>
+                    {% empty %}
+                    <li>暂无分类</li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-    <!-- Sidebar -->
-    <section id="sidebar">
-        <!--intro-->
-        {% block intro %}
-        {% endblock intro %}
-        <!-- Mini Posts -->
-        {% block newArticle %}
-        {% endblock newArticle %}
-        <section class="archive">
-            <h2>归档</h2>
-            {% archives as archive_list %}
-            <ul>
-                {% for archive in archive_list %}
-                <li><a href="{% url 'blog:archives' archive.year archive.month %}">{{archive.year}} 年 {{archive.month}}
-                    月</a></li>
-                {% empty %}
-                <li><a href="">暂无归档</a></li>
-                {% endfor %}
-            </ul>
-        </section>
+            <div>
+                <h2>标签分类</h2>
+                {% get_tags as tag_list %}
+                <ul>
+                    {% for tag in tag_list %}
+                    <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}} （{{tag.num_post}}）</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
 
-        <section>
-            <h2>文章分类</h2>
-            {% get_categories as cate_list %}
-            <ul>
-                {% for category in cate_list %}
-                <li>
-                    <a href="{% url 'blog:category' category.pk %}">{{category.name}} （{{category.num_posts}}）</a>
-                </li>
-                {% empty %}
-                <li>暂无分类</li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <section>
-            <h2>标签分类</h2>
-            {% get_tags as tag_list %}
-            <ul>
-                {% for tag in tag_list %}
-                <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}} （{{tag.num_post}}）</a></li>
-                {% endfor %}
-            </ul>
-        </section>
-
-        <!--friends sites-->
-        <section>
-            <h2>友情链接</h2>
-            {% get_friends as friends_list %}
-            <ul>
-                {% for friend in friends_list %}
-                <li><a href="{{friend.site_url}}" target="_blank">{{friend.site_name}}</a></li>
-                {% endfor %}
-            </ul>
-        </section>
-        <!-- Footer -->
-        <section id="footer">
+            <!--friends sites-->
+            <div>
+                <h2>友情链接</h2>
+                {% get_friends as friends_list %}
+                <ul>
+                    {% for friend in friends_list %}
+                    <li><a href="{{friend.site_url}}" target="_blank">{{friend.site_name}}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
             <ul class="icons">
                 <li><a href="https://github.com/Superb-x" class="fa-github"><span class="label">Github</span></a></li>
                 <li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>
                 <li><a href="mailto:lxl9435@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>
             </ul>
-        </section>
-
-    </section>
-
-</div>
-
-<section>
-    <!--访问统计-->
-    <footer class="pv">
+        </div>
+    </div>
+    <div class="footer">
         <p>访问统计</p>
         {% get_all_visit_count as total_count %}
         <p class="detail-pv">运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
-        <p class="copyright">Copyright © 2017 刘祥麟 All Rights Reserved! Powered by <a
+        <p class="copyright">Copyright © 2019 刘祥麟 All Rights Reserved! Powered by <a
                 href="https://www.djangoproject.com/">Django</a> 备案信息:
             <a href="http://www.miibeian.gov.cn" target="_blank">湘ICP备 17013572号</a>
         </p>
-    </footer>
-</section>
-
+    </div>
+</div>
 <!-- Scripts -->
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
-<script src="{% static 'assets/js/skel.min.js' %}"></script>
-<script src="{% static 'assets/js/util.js' %}"></script>
-<!--[if lte IE 8]>
-<script src="[% static 'assets/js/ie/respond.min.js' %]"></script><![endif]-->
-<script src="{% static 'assets/js/main.js' %}"></script>
 <script src="{% static 'assets/js/prism_patched.min.js' %}"></script>
 
 </body>

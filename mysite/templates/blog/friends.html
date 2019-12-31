@@ -12,11 +12,24 @@
 {% endblock navigator %}
 
 {% block main %}
+<style>
+    .friend-link {
+        list-style: none;
+    }
+    .friend-link li{
+        display: inline-block;
+        margin-right:20px;
+    }
+    .friend-link li a {
+        color: #0000aa;
+        text-decoration: underline;
+    }
+</style>
+<ul class="friend-link">
     {% for friend in friends_list %}
-        <article>
-            <h2 class="title" title="{{friend.site_name}}"><a href="{{friend.site_url}}">{{friend.site_name}}</a></h2>
-            <div class="content">{{friend.site_intro}}</div>
-            <p></p>
-        </article>
+    <li>
+        <a href="{{friend.site_url}}" title="{{friend.site_intro}}">{{friend.site_name}}</a>
+    </li>
     {% endfor %}
+</ul>
 {% endblock main %}

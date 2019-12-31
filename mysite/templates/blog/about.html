@@ -13,19 +13,17 @@
 
 {% block main %}
 	{% for post in post_list %}
-		<article class="post post-{{post.pk}}">
-			<section>
-				<h2>{{post.title}}</h2>
-				{% if post.avatar %}
-					<div class="box alt">
-						<div class="row uniform">
-							<div class="12u$"><span class="image fit"><img src="{{post.avatar.url}}" alt="" /></span></div>
-						</div>
+		<div class="post post-{{post.pk}}">
+			<h2>{{post.title}}</h2>
+			{% if post.avatar %}
+				<div class="box alt">
+					<div class="row uniform">
+						<div class="12u$"><span class="image fit"><img src="{{post.avatar.url}}" alt="" /></span></div>
 					</div>
-				{% endif %}
-				<!--<h4>Left &amp; Right</h4>-->
-				<p>{{post.body | safe}}</p>
-			</section>
-		</article>
+				</div>
+			{% endif %}
+			<!--<h4>Left &amp; Right</h4>-->
+			<p>{{post.body | safe}}</p>
+		</div>
 	{% endfor %}
 {% endblock main %}

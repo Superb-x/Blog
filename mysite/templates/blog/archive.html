@@ -12,16 +12,21 @@
 {% endblock navigator %}
 
 {% block main %}
-    <article class="post post-{{post.pk}}">
-        <section>
-            <h2>{{post.title}}</h2>
-            <div class="box alt">
-                <div class="row uniform">
-                    <div class="12u$"><span class="image fit"><img src="{{post.thumb.url}}" alt="" /></span></div>
-                </div>
-            </div>
-            <!--<h4>Left &amp; Right</h4>-->
-            <p>{{post.body | safe}}</p>
-        </section>
-    </article>
+<style>
+    .archive-list li{
+        display: inline-block;
+        margin-right: 20px;
+    }
+    .archive-list li a {
+        color: #0000aa;
+        text-decoration: underline;
+    }
+</style>
+    <ul class="archive-list">
+        {% for archive in archive_list %}
+        <li><a href="{% url 'blog:archives' archive.year archive.month %}" target="_self">{{archive}}</a></li>
+        {% empty %}
+        <li>暂无归档</li>
+        {% endfor %}
+    </ul>
 {% endblock main %}

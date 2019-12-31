@@ -19,33 +19,14 @@
     <p>{{error_msg}}</p>
     {% endif %}
     {% for post in post_list %}
-    <article class="post">
-        <header>
-            <div class="title">
-                <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-                {{post.excerpt | safe}}
-            </div>
-            <div class="meta">
-                <time class="published" datetime="2015-11-01">{{post.create_time}}</time>
-                <a href="#" class="author"><span class="name">{{post.author}}</span><img
-                        src="{{post.author.avatar.url}}" alt=""/></a>
-            </div>
-        </header>
-        <!--如果当前文章有缩略图，就显示出来-->
+    <div class="post">
+        <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+        <p class="post-desc">{{post.excerpt | safe}}</p>
+        <div class="publish-time">{{post.create_time}}</div>
         {% if post.thumb %}
             <a href="#" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
         {% endif %}
-        <footer>
-            <ul class="actions">
-                <li><a href="{{post.get_absolute_url}}" class="button big">继续阅读</a></li>
-            </ul>
-            <ul class="stats">
-                <li><a href="#">{{post.category}}</a></li>
-                <li><a href="#" class="icon fa-heart">0</a></li>
-                <li><a href="#" id="sourceId::{{post.pk}}" class="icon fa-comment cy_cmt_count">0</a></li>
-            </ul>
-        </footer>
-    </article>
+    </div>
     {% endfor %}
 
 

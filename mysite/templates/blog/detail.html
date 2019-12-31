@@ -96,24 +96,15 @@
 
 {% block newArticle %}
 <!-- Mini Posts -->
-<section>
+<div class="new-post">
     <h2>最新文章</h2>
     {% get_recent_posts as recent_post_list %}
     <ul class="posts">
         {% for post in recent_post_list %}
         <li>
-            <article>
-                <header>
-                    <h3><a href="#">{{post.title}}</a></h3>
-                    <time class="published" datetime="2015-10-20">{{post.create_time}}</time>
-                </header>
-                <!--如果文章有图片就显示，没有就不渲染当前节点-->
-                {% if post.thumb %}
-                    <a href="#" class="image"><img src="{{post.thumb.url}}" alt=""/></a>
-                {% endif %}
-            </article>
+            <h3><a href="#">{{post.title}}</a></h3>
         </li>
         {% endfor %}
     </ul>
-</section>
+</div>
 {% endblock newArticle %}

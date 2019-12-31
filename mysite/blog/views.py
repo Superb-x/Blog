@@ -226,12 +226,14 @@ def archives(request, year, month):
 
 # 归档
 class ArchiveListView(ListView):
-    model = Post
     template_name = 'blog/archive.html'
     context_object_name = 'archive_list'
 
     def get_queryset(self):
-        return super(ArchiveListView, self).get_queryset().dates('create_time', 'month', order='DESC')
+        context = Post.objects.dates('create_time', 'month', order='DESC')
+        print(context)
+        return context
+
 
 # 分类
 class CategoryView(ListView):
