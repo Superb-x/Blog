@@ -18,15 +18,26 @@
         margin-right: 20px;
     }
     .archive-list li a {
-        color: #0000aa;
+        color: #5b5bf1;
         text-decoration: underline;
     }
+    .archive-list li h2 {
+        margin-bottom:5px;
+    }
+    .archive-list ul {
+        margin-bottom:10px;
+    }
 </style>
-    <ul class="archive-list">
-        {% for archive in archive_list %}
-        <li><a href="{% url 'blog:archives' archive.year archive.month %}" target="_self">{{archive}}</a></li>
+    <div class="archive-list">
+        {% for key,archive in archive_list.items %}
+            <h2>{{key}}</h2>
+            <ul>
+                {% for item in archive %}
+                    <li><a href="{% url 'blog:archives' item.year item.month %}" target="_self">{{item}}</a></li>
+                {% endfor %}
+            </ul>
         {% empty %}
         <li>暂无归档</li>
         {% endfor %}
-    </ul>
+    </div>
 {% endblock main %}

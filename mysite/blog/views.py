@@ -5,6 +5,7 @@ from comments.forms import CommentFrom
 from .models import Post, Category, Tag, About, FriendSites
 from django.views.generic import ListView, DetailView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from collections import defaultdict
 from django.db.models import Q
 # Create your views here.
 
@@ -231,8 +232,11 @@ class ArchiveListView(ListView):
 
     def get_queryset(self):
         context = Post.objects.dates('create_time', 'month', order='DESC')
-        print(context)
-        return context
+        data = defaultdict(list)
+        for item in context:
+            data[item.year].append(item)
+
+        return dict(data)
 
 
 # 分类
