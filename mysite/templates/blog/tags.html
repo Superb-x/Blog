@@ -12,11 +12,18 @@
 {% endblock navigator %}
 
 {% block main %}
-    <div class="box alt">
-        <div class="row uniform">
-           {% for tag in tag_list %}
-            <div class="4u"><a href="{% url 'blog:tag' tag.pk %}"><span class="image fit"><img src="{{tag.thumb.url}}" alt="" /></span></a></div>
-           {% endfor %}
-        </div>
+<style>
+    .tag-list .tag {
+        display: inline-block;
+        width:180px;
+    }
+    .tag-list .tag img {
+        width:100%;
+    }
+</style>
+    <div class="tag-list">
+       {% for tag in tag_list %}
+        <div class="tag"><a href="{% url 'blog:tag' tag.pk %}"><span class="image fit"><img src="{{tag.thumb.url}}" alt="" /></span></a></div>
+       {% endfor %}
     </div>
 {% endblock main %}
