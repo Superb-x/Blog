@@ -133,4 +133,8 @@ html, body {
 }
 .pagination li{
 	display: inline-block;
+	padding: 0 3px;
+}
+.pagination .active {
+	color: #0b83a7;
 }
