@@ -13,13 +13,18 @@
 {% endblock navigator %}
 
 {% block main %}
-    <!-- Search -->
+<style>
+    .search-content {
+        font-size: 14px;
+        line-height: 22px;
+    }
+</style>
     <div class="article">
         {% if query %}
             {% for result in page.object_list %}
                 <article>
                     <h2 class="title" title="{{result.object.title}}"><a href="{{result.object.get_absolute_url}}">{{result.object.title}}</a></h2>
-                    <div>{% highlight result.object.body with query %}</div>
+                    <div class="search-content">{% highlight result.object.body with query %}</div>
                     <a href="{{result.object.get_absolute_url}}" class="continue">继续阅读>></a>
                     <p class="article-info">
                         {{result.object.create_time}} · {{result.object.category}} · {{result.object.tag}}
