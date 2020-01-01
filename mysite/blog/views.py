@@ -211,19 +211,16 @@ def detail(request, pk):
     }
     return render(request, 'blog/detail.html', context=context)
 
-class ArchivesView(ListView):
-    model = Post
-    template_name = 'blog/index.html'
-    context_object_name = 'post_list'
-
-    def get_queryset(self):
-        year = self.kwargs.get('year')
-        month = self.kwargs.get('month')
-        return super(ArchivesView, self).get_queryset().filter(create_time__year=year, create_time__month=month)
-
 def archives(request, year, month):
-    post_list = Post.objects.filter(create_time__year=year, create_time__month=month)
-    return render(request, 'blog/index.html', context={'post_list': post_list})
+    print(year, month)
+    post_list = Post.objects.all().order_by('-create_time')
+    data = []
+    # 查资料是mysql的一个bug，所以这里手动处理一下
+    for post in post_list:
+        if str(post.create_time.year) == str(year) and str(post.create_time.month) == str(month):
+            data.append(post)
+
+    return render(request, 'blog/index.html', context={'post_list': data})
 
 # 归档
 class ArchiveListView(ListView):
