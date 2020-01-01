@@ -111,6 +111,7 @@ html, body {
 }
 .content-box ul, ol, dl {
 	list-style: unset;
+	padding-left: 20px;
 }
 .content-box .post table img {
 	max-width: none;

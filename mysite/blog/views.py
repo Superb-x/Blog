@@ -212,7 +212,6 @@ def detail(request, pk):
     return render(request, 'blog/detail.html', context=context)
 
 def archives(request, year, month):
-    print(year, month)
     post_list = Post.objects.all().order_by('-create_time')
     data = []
     # 查资料是mysql的一个bug，所以这里手动处理一下
