@@ -109,6 +109,9 @@ html, body {
 .content-box .post img {
 	max-width: 100%;
 }
+.content-box ul, ol, dl {
+	list-style: unset;
+}
 .content-box .post table img {
 	max-width: none;
 }
