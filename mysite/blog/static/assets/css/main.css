@@ -141,3 +141,6 @@ html, body {
 .pagination .active {
 	color: #0b83a7;
 }
+.highlighted {
+	color: #f52929;
+}
