@@ -33,7 +33,7 @@
             <h2>{{key}}</h2>
             <ul>
                 {% for item in archive %}
-                    <li><a href="{% url 'blog:archives' item.year item.month %}" target="_self">{{item}}</a></li>
+                    <li><a href="{% url 'blog:archives' item.year item.month %}" target="_self">{{item.year}}.{{item.month}}</a></li>
                 {% endfor %}
             </ul>
         {% empty %}
