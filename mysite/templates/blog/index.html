@@ -24,7 +24,7 @@
         <p class="post-desc">{{post.excerpt | safe}}</p>
         <div class="publish-time">{{post.create_time}}</div>
         {% if post.thumb %}
-            <a href="#" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
+            <a href="{{post.get_absolute_url}}" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
         {% endif %}
     </div>
     {% endfor %}
