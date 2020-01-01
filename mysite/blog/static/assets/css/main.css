@@ -109,6 +109,9 @@ html, body {
 .content-box .post img {
 	max-width: 100%;
 }
+.content-box .post table img {
+	max-width: none;
+}
 .side-box h2 {
 	font-size: 16px;
 }
