@@ -40,7 +40,7 @@ def get_today_visit_count():
     except ObjectDoesNotExist:
         # 没有记录则表示当天没人访问
         return 0
-    return count.today_visit
+    return count.today_pv
 
 #获取网站总共运行天数
 @register.simple_tag
@@ -50,7 +50,7 @@ def get_all_run_day():
 #获取网站总访问量
 @register.simple_tag
 def get_all_visit_count():
-    return PageView.objects.all().aggregate(total_visit=Sum('today_pv'))
+    return PageView.objects.all().aggregate(total_visit=Sum('today_visit'))
 
 # 获取友情链接
 @register.simple_tag
