@@ -22,7 +22,7 @@ class FriendsAdmin(object):
     list_display = ['site_name', 'site_url', 'admin_name', 'admin_contact', 'site_intro']
 
 class VisitorAdmin(object):
-    list_display = ['http_host', 'http_path', 'http_user_agent', 'ip', 'server_name']
+    list_display = ['http_host', 'http_path', 'http_user_agent', 'ip', 'today_pv']
 
 class UserProfileAdmin(object):
     list_display = ['user', 'avatar', 'description']

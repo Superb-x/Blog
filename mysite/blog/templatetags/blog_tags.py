@@ -50,7 +50,7 @@ def get_all_run_day():
 #获取网站总访问量
 @register.simple_tag
 def get_all_visit_count():
-    return PageView.objects.all().aggregate(total_visit=Sum('today_visit'))
+    return PageView.objects.all().aggregate(total_visit=Sum('today_pv'))
 
 # 获取友情链接
 @register.simple_tag
