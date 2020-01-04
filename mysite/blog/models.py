@@ -202,6 +202,7 @@ class PageView(models.Model):
     记录站点的运营统计数据, 每天的有效访问量以及IP
     """
     today_visit = models.PositiveIntegerField(default=0, verbose_name="访问量")
+    today_pv = models.PositiveIntegerField(default=0, verbose_name="今日pv")
     create_date = models.DateField(unique=True, editable=True, verbose_name="日期")
 
     class Meta:

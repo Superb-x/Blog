@@ -69,3 +69,15 @@ class PageViewMiddleware(MiddlewareMixin):
                 visit = PageView(create_date=timezone.now())
                 visit.today_visit += 1
                 visit.save()
+
+        # 记录pv
+        try:
+            # 如果记录存在则更新记录
+            pv = PageView.objects.get(create_date=timezone.now())
+            pv.today_pv += 1
+            pv.save()
+        except ObjectDoesNotExist:
+            # 如果记录不存在则新建一条记录
+            pv = PageView(create_date=timezone.now())
+            pv.today_pv += 1
+            pv.save()
