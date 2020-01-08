@@ -19,14 +19,14 @@
     <p>{{error_msg}}</p>
     {% endif %}
     {% for post in post_list %}
-    <div class="post">
-        <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
-        <p class="post-desc">{{post.excerpt | safe}}</p>
-        <div class="publish-time">{{post.create_time}}</div>
-        {% if post.thumb %}
-            <a href="{{post.get_absolute_url}}" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
-        {% endif %}
-    </div>
+        <div class="post">
+            <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
+            <p class="post-desc">{{post.excerpt | safe}}</p>
+            <div class="publish-time">{{post.create_time}} &nbsp;&nbsp; {{post.views}}次阅读数</div>
+            {% if post.thumb %}
+                <a href="{{post.get_absolute_url}}" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
+            {% endif %}
+        </div>
     {% endfor %}
 
 

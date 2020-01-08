@@ -85,6 +85,7 @@ html, body {
 .content-box .post {
 	margin-bottom:20px;
 	font-size:14px;
+	color: #444;
 }
 .content-box .post h2{
 	color: #333;
