@@ -15,7 +15,7 @@ class IndexView(ListView):
     model = Post
     template_name = 'blog/index.html'
     context_object_name = 'post_list'
-    paginate_by = 10
+    paginate_by = 2
 
     def get_context_data(self, **kwargs):
         """
@@ -145,6 +145,7 @@ class IndexView(ListView):
             'left_has_more': left_has_more,
             'right_has_more': right_has_more,
             'first': first,
+            'page_number': page_number,
             'last': last,
         }
 

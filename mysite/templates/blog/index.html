@@ -38,7 +38,7 @@
             {% endif %}
             {% if left %}
                 {% if left_has_more %}
-                    <li><a href="page={{i|add:'-3'}}">...</a></li>
+                    <li><a href="?page={{page_number|add:'-3'}}">...</a></li>
                 {% endif %}
                 {% for i in left %}
                     <li><a href="?page={{i}}">{{i}}</a></li>
@@ -50,7 +50,7 @@
                     <li><a href="?page={{i}}">{{i}}</a></li>
                 {% endfor %}
                 {% if right_has_more %}
-                    <li><a href="page={{i|add:3}}">···</a></li>
+                    <li><a href="?page={{page_number|add:3}}">···</a></li>
                 {% endif %}
             {% endif %}
             {% if last %}
