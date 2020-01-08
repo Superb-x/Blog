@@ -22,7 +22,7 @@
         <div class="post">
             <h2 title="{{post.title}}"><a href="{{post.get_absolute_url}}">{{post.title}}</a></h2>
             <p class="post-desc">{{post.excerpt | safe}}</p>
-            <div class="publish-time">{{post.create_time}} &nbsp;&nbsp; {{post.views}}次阅读数</div>
+            <div class="publish-time">{{post.create_time}} &nbsp; {{post.views}}次阅读数</div>
             {% if post.thumb %}
                 <a href="{{post.get_absolute_url}}" class="image featured"><img src="{{post.thumb.url}}" alt=""/></a>
             {% endif %}
@@ -34,11 +34,11 @@
         <!-- Pagination -->
         <ul class="actions pagination">
             {% if first %}
-                <li><a href="">1</a></li>
+                <li><a href="/">1</a></li>
             {% endif %}
             {% if left %}
                 {% if left_has_more %}
-                    <li><a href="">...</a></li>
+                    <li><a href="page={{i-3}}">...</a></li>
                 {% endif %}
                 {% for i in left %}
                     <li><a href="?page={{i}}">{{i}}</a></li>
@@ -50,7 +50,7 @@
                     <li><a href="?page={{i}}">{{i}}</a></li>
                 {% endfor %}
                 {% if right_has_more %}
-                    <li><a href="">···</a></li>
+                    <li><a href="page={{i+3}}">···</a></li>
                 {% endif %}
             {% endif %}
             {% if last %}
