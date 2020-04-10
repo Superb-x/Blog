@@ -111,9 +111,12 @@ html, body {
 .content-box .post img {
 	max-width: 100%;
 }
-.content-box ul, ol, dl {
-	list-style: unset;
+.content-box ul{
+	list-style: disc;
 	padding-left: 20px;
+}
+.content-box ol {
+	list-style: decimal;
 }
 .content-box .post table img {
 	max-width: none;
