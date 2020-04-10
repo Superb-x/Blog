@@ -111,6 +111,9 @@ html, body {
 .content-box .post img {
 	max-width: 100%;
 }
+.content-box ul, ol, dl {
+	padding-left:25px;
+}
 .content-box ul{
 	list-style: disc;
 	padding-left: 20px;
