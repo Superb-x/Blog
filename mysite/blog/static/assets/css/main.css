@@ -233,6 +233,9 @@ html, body {
 	.header .right {
 		padding: 0 10px;
 	}
+	.content {
+		width:100%;
+	}
 	.content .content-box {
 		width:100%;
 	}
