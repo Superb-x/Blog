@@ -210,9 +210,6 @@ html, body {
 	transition: transform .2s cubic-bezier(.4,.01,.165,.99),-webkit-transform .2s cubic-bezier(.4,.01,.165,.99);
 }
 @media screen and (max-width:768px) {
-	.header{
-		
-	}
 	.header .bar {
 		display: block;
 	}
