@@ -16,108 +16,109 @@
     <!--<link rel="stylesheet" href="{% static 'assets/css/main.css' %}"/>-->
 </head>
 <body>
-
-<div>
-    <!-- Header -->
-    <div class="header">
-        <div class="header-content">
-            <div class="left">
-                <h1><a href="/">Mr.L's Blog</a></h1>
-                <div class="navbar">
-                    {% block navigator %}
-                    {% endblock navigator %}
-                </div>
+<!-- Header -->
+<div class="header">
+    <div class="bar">
+        <i></i>
+    </div>
+    <div class="header-content">
+        <div class="left">
+            <h1><a href="/">蒙面超人的博客</a></h1>
+            <div class="navbar">
+                {% block navigator %}
+                {% endblock navigator %}
             </div>
-            <div class="right">
-                <div class="search">
-                    <form id="search" method="get" autocomplete="off" action="{% url 'haystack_search' %}">
-                        <input type="search" name="q" placeholder="JavaScript" required>
-                        <button type="submit" class="fa-search" href="#search">站内搜索</button>
-                    </form>
-                </div>
+        </div>
+        <div class="right">
+            <div class="search">
+                <form id="search" method="get" autocomplete="off" action="{% url 'haystack_search' %}">
+                    <input type="search" name="q" placeholder="JavaScript" required>
+                    <button type="submit" class="fa-search" href="#search">站内搜索</button>
+                </form>
             </div>
         </div>
     </div>
-    <div class="content">
-        <div class="content-box">
-            {% block main %}
-            {% endblock main %}
-        </div>
-        <div class="side-box">
-            <!-- 最新 文章 -->
-            {% block newArticle %}
-            {% endblock newArticle %}
-            <div class="archive">
-                <h2>归档</h2>
-                {% archives as archive_list %}
-                <ul>
-                    {% for archive in archive_list %}
-                    <li><a href="{% url 'blog:archives' archive.year archive.month %}">{{archive.year}} 年 {{archive.month}}
-                        月</a></li>
-                    {% empty %}
-                    <li><a href="">暂无归档</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <h2>文章分类</h2>
-                {% get_categories as cate_list %}
-                <ul>
-                    {% for category in cate_list %}
-                    <li>
-                        <a href="{% url 'blog:category' category.pk %}">{{category.name}} （{{category.num_posts}}）</a>
-                    </li>
-                    {% empty %}
-                    <li>暂无分类</li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <div>
-                <h2>标签分类</h2>
-                {% get_tags as tag_list %}
-                <ul>
-                    {% for tag in tag_list %}
-                    <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}} （{{tag.num_post}}）</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-
-            <!--friends sites-->
-            <div>
-                <h2>友情链接</h2>
-                {% get_friends as friends_list %}
-                <ul>
-                    {% for friend in friends_list %}
-                    <li><a href="{{friend.site_url}}" target="_blank">{{friend.site_name}}</a></li>
-                    {% endfor %}
-                </ul>
-            </div>
-            <div>
-                <a href="https://www.aliyun.com/minisite/goods?userCode=qc0o2j2i" target="_blank">
-                    <img src="https://img.alicdn.com/tfs/TB1iSEKqRr0gK0jSZFnXXbRRXXa-220-120.jpg" alt="">
-                </a>
-            </div>
-            <!--<ul class="icons">-->
-                <!--<li><a href="https://github.com/Superb-x" class="fa-github"><span class="label">Github</span></a></li>-->
-                <!--<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>-->
-                <!--<li><a href="mailto:lxl9435@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>-->
-            <!--</ul>-->
-        </div>
+</div>
+<div class="content">
+    <div class="content-box">
+        {% block main %}
+        {% endblock main %}
     </div>
-    <div class="footer">
-        <p>访问统计</p>
-        {% get_all_visit_count as total_count %}
-        <p class="detail-pv">运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
-        <p class="copyright">Copyright © 2019 刘祥麟 All Rights Reserved! Powered by <a
-                href="https://www.djangoproject.com/">Django</a> 备案信息:
-            <a href="http://www.beian.miit.gov.cn" target="_blank">湘ICP备 17013572号</a>
-        </p>
+    <div class="side-box">
+        <!-- 最新 文章 -->
+        {% block newArticle %}
+        {% endblock newArticle %}
+        <div class="archive">
+            <h2>归档</h2>
+            {% archives as archive_list %}
+            <ul>
+                {% for archive in archive_list %}
+                <li><a href="{% url 'blog:archives' archive.year archive.month %}">{{archive.year}} 年 {{archive.month}}
+                    月</a></li>
+                {% empty %}
+                <li><a href="">暂无归档</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <h2>文章分类</h2>
+            {% get_categories as cate_list %}
+            <ul>
+                {% for category in cate_list %}
+                <li>
+                    <a href="{% url 'blog:category' category.pk %}">{{category.name}} （{{category.num_posts}}）</a>
+                </li>
+                {% empty %}
+                <li>暂无分类</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div>
+            <h2>标签分类</h2>
+            {% get_tags as tag_list %}
+            <ul>
+                {% for tag in tag_list %}
+                <li><a href="{% url 'blog:tag' tag.pk %}">{{tag.name}} （{{tag.num_post}}）</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <!--friends sites-->
+        <div>
+            <h2>友情链接</h2>
+            {% get_friends as friends_list %}
+            <ul>
+                {% for friend in friends_list %}
+                <li><a href="{{friend.site_url}}" target="_blank">{{friend.site_name}}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div>
+            <a href="https://www.aliyun.com/minisite/goods?userCode=qc0o2j2i" target="_blank">
+                <img src="https://img.alicdn.com/tfs/TB1iSEKqRr0gK0jSZFnXXbRRXXa-220-120.jpg" alt="">
+            </a>
+        </div>
+        <!--<ul class="icons">-->
+            <!--<li><a href="https://github.com/Superb-x" class="fa-github"><span class="label">Github</span></a></li>-->
+            <!--<li><a href="#" class="fa-rss"><span class="label">RSS</span></a></li>-->
+            <!--<li><a href="mailto:lxl9435@gmail.com" class="fa-envelope"><span class="label">Email</span></a></li>-->
+        <!--</ul>-->
     </div>
+</div>
+<div class="footer">
+    <p>访问统计</p>
+    {% get_all_visit_count as total_count %}
+    <p class="detail-pv">运行时间 {% get_all_run_day %} 天 | 总访问量:{{total_count.total_visit}} | 今日访问: {% get_today_visit_count %}</p>
+    <p class="copyright">Copyright © 2019 刘祥麟 All Rights Reserved! Powered by <a
+            href="https://www.djangoproject.com/">Django</a> 备案信息:
+        <a href="http://www.beian.miit.gov.cn" target="_blank">湘ICP备 17013572号</a>
+    </p>
 </div>
 <!-- Scripts -->
 <script src="{% static 'assets/js/jquery.min.js' %}"></script>
 <script src="{% static 'assets/js/prism_patched.min.js' %}"></script>
+<script src="{% static 'assets/js/common.js' %}"></script>
 <!--百度统计-->
 <script>
 var _hmt = _hmt || [];

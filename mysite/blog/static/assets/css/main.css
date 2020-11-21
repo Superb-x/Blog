@@ -2,7 +2,7 @@ body {
         background: #f7f7f7;
 }
 a {
-	color: #666;
+	color: #2f0dab;
 	text-decoration: none;
 }
 ul,ol,dl, h1, h2, h3{
@@ -13,18 +13,63 @@ ul,ol,dl, h1, h2, h3{
 html, body {
 	margin: 0;
 	padding: 0;
+	height:100%;
 }
+
 .header {
 	width: 100%;
 	height:60px;
 	line-height: 60px;
 	box-shadow: 1px 1px 8px rgba(0,0,0,.3);
 	background: #fff;
+	position: fixed;
+	top:0;
+	left:0;
 }
 .header .header-content {
-	width: 1200px;
+	width: 100%;
 	height:60px;
 	margin:0 auto;
+	position: relative;
+	transition: transform .2s cubic-bezier(.4,.01,.165,.99),-webkit-transform .2s cubic-bezier(.4,.01,.165,.99);
+}
+.header .bar {
+	width:60px;
+	height:60px;
+	position: absolute;
+	left:0;
+	top:0;
+	display: none;
+}
+.header .bar::before,.header .bar::after, .header i {
+	content: '';
+	display: block;
+	height:2px;
+	width:23px;
+	background: #2b2c2d;
+	left:18px;
+	position: absolute;
+	transition: transform .2s cubic-bezier(.4,.01,.165,.99),-webkit-transform .2s cubic-bezier(.4,.01,.165,.99);
+}
+.header .bar::before {
+	top:18px;
+}
+.header i {
+	top:28px;
+}
+.header .bar::after {
+	top:38px;
+}
+.open .header .bar i {
+	opacity: 0;
+}
+.open .header .bar::before {
+	transform: rotate(-45deg);
+	top:28px;
+}
+.open .header .bar::after {
+	transform: rotate(45deg);
+	top:28px;
 }
 .header .left {
 	overflow: hidden;
@@ -62,11 +107,14 @@ html, body {
 	float: left;
 }
 .content {
-	width:1160px;
+	width:100%;
 	padding: 20px;
-	margin: 20px auto;
+	margin: 80px auto 0;
 	background: #fff;
 	box-shadow: 0px 0px 3px rgba(0,0,0,.3);
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 .content:after {
 	content: "";
@@ -155,4 +203,41 @@ html, body {
 }
 .highlighted {
 	color: #f52929;
+}
+.open {
+	position: fixed;
+	transform: translate3D(200px, 0, 0);
+	transition: transform .2s cubic-bezier(.4,.01,.165,.99),-webkit-transform .2s cubic-bezier(.4,.01,.165,.99);
+}
+@media screen and (max-width:768px) {
+	.header{
+		
+	}
+	.header .bar {
+		display: block;
+	}
+	.header .header-content {
+		width:200px;
+		height:100%;
+		position: fixed;
+		transform: translate3D(-200px, 0, 0);
+	}
+	.header .left h1 {
+		width:100%;
+		text-align: center;
+	}
+	.header .navbar {
+		margin-left:0;
+		text-align: center;
+	}
+	.header .right {
+		padding: 0 10px;
+	}
+	.content .content-box {
+		width:100%;
+	}
+	.footer {
+		width:100%;
+		padding-bottom:15px;
+	}
 }
