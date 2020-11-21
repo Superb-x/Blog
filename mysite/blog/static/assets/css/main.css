@@ -26,6 +26,11 @@ html, body {
 	top:0;
 	left:0;
 }
+.header .title {
+	display: none;
+	font-size:16px;
+	text-align: center;
+}
 .header .header-content {
 	width: 1200px;
 	height:60px;
@@ -211,6 +216,9 @@ html, body {
 }
 @media screen and (max-width:768px) {
 	.header .bar {
+		display: block;
+	}
+	.header .title {
 		display: block;
 	}
 	.header .header-content {
