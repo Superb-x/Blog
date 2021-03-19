@@ -13,7 +13,7 @@ cssselect==1.0.1
 Django==1.10.6
 django-cors-headers==2.0.2
 django-filter==1.0.2
-djangorestframework==3.6.2
+djangorestframework==3.11.2
 idna==2.5
 incremental==17.5.0
 isort==4.2.5
