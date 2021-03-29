@@ -31,7 +31,7 @@ pyasn1==0.2.3
 pyasn1-modules==0.0.9
 pycparser==2.17
 PyDispatcher==2.0.5
-Pygments==2.2.0
+Pygments==2.7.4
 pylint==1.7.1
 PyMySQL==0.7.10
 pyOpenSSL==17.0.0
