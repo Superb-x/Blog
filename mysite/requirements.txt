@@ -43,7 +43,7 @@ six==1.10.0
 Twisted==17.1.0
 uritemplate==3.0.0
 w3lib==1.17.0
-Werkzeug==0.12
+Werkzeug==0.15.5
 wrapt==1.10.10
 zope.interface==4.4.1
 django-reversion>=2.0.0
